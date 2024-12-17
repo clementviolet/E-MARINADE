@@ -32,45 +32,44 @@ shinyUI(fluidPage(
   # load page layout
   dashboardPage(
     
-    skin = "green",
+    skin = "blue",
       
-    dashboardHeader(title="Biodiversity in National Parks", titleWidth = 300),
+    dashboardHeader(title="NIS Atlas of European Waters", titleWidth = 300),
     
     dashboardSidebar(width = 300,
       sidebarMenu(
         HTML(paste0(
           "<br>",
-          "<a href='https://www.nps.gov/index.htm' target='_blank'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='US-NationalParkService-Logo.svg' width = '186'></a>",
-          "<br>",
-          "<p style = 'text-align: center;'><small><a href='https://www.nps.gov/subjects/hfc/arrowhead-artwork.htm' target='_blank'>NPS logo disclaimer</a></small></p>",
+          "Je mettrai le logo ici",
           "<br>"
         )),
         menuItem("Home", tabName = "home", icon = icon("home")),
-        menuItem("Parks Map", tabName = "map", icon = icon("thumbtack")),
-        menuItem("Species Tables", tabName = "table", icon = icon("table")),
-        menuItem("Species Tree", tabName = "tree", icon = icon("random", lib = "glyphicon")),
-        menuItem("Species Charts", tabName = "charts", icon = icon("stats", lib = "glyphicon")),
-        menuItem("Species Choropleth Map", tabName = "choropleth", icon = icon("map marked alt")),
-        menuItem("Releases", tabName = "releases", icon = icon("tasks")),
-        HTML(paste0(
-          "<br><br><br><br><br><br><br><br><br>",
-          "<table style='margin-left:auto; margin-right:auto;'>",
-            "<tr>",
-              "<td style='padding: 5px;'><a href='https://www.facebook.com/nationalparkservice' target='_blank'><i class='fab fa-facebook-square fa-lg'></i></a></td>",
-              "<td style='padding: 5px;'><a href='https://www.youtube.com/nationalparkservice' target='_blank'><i class='fab fa-youtube fa-lg'></i></a></td>",
-              "<td style='padding: 5px;'><a href='https://www.twitter.com/natlparkservice' target='_blank'><i class='fab fa-twitter fa-lg'></i></a></td>",
-              "<td style='padding: 5px;'><a href='https://www.instagram.com/nationalparkservice' target='_blank'><i class='fab fa-instagram fa-lg'></i></a></td>",
-              "<td style='padding: 5px;'><a href='https://www.flickr.com/nationalparkservice' target='_blank'><i class='fab fa-flickr fa-lg'></i></a></td>",
-            "</tr>",
-          "</table>",
-          "<br>"),
-        HTML(paste0(
-          "<script>",
-            "var today = new Date();",
-            "var yyyy = today.getFullYear();",
-          "</script>",
-          "<p style = 'text-align: center;'><small>&copy; - <a href='https://alessiobenedetti.com' target='_blank'>alessiobenedetti.com</a> - <script>document.write(yyyy);</script></small></p>")
-        ))
+        menuItem("European Invasion Map", tabName = "inv_map", icon = icon("map marked alt")),
+        menuItem("Origin of NIS European species Map", tabName = "org_map", icon = icon("map marked alt")),
+        menuItem("Species Tables", tabName = "table", icon = icon("table")) #,
+        # menuItem("Species Tree", tabName = "tree", icon = icon("random", lib = "glyphicon")),
+        # menuItem("Species Charts", tabName = "charts", icon = icon("stats", lib = "glyphicon")),
+        # menuItem("Species Choropleth Map", tabName = "choropleth", icon = icon("map marked alt")),
+        # menuItem("Releases", tabName = "releases", icon = icon("tasks")),
+        # HTML(paste0(
+        #   "<br><br><br><br><br><br><br><br><br>",
+        #   "<table style='margin-left:auto; margin-right:auto;'>",
+        #     "<tr>",
+        #       "<td style='padding: 5px;'><a href='https://www.facebook.com/nationalparkservice' target='_blank'><i class='fab fa-facebook-square fa-lg'></i></a></td>",
+        #       "<td style='padding: 5px;'><a href='https://www.youtube.com/nationalparkservice' target='_blank'><i class='fab fa-youtube fa-lg'></i></a></td>",
+        #       "<td style='padding: 5px;'><a href='https://www.twitter.com/natlparkservice' target='_blank'><i class='fab fa-twitter fa-lg'></i></a></td>",
+        #       "<td style='padding: 5px;'><a href='https://www.instagram.com/nationalparkservice' target='_blank'><i class='fab fa-instagram fa-lg'></i></a></td>",
+        #       "<td style='padding: 5px;'><a href='https://www.flickr.com/nationalparkservice' target='_blank'><i class='fab fa-flickr fa-lg'></i></a></td>",
+        #     "</tr>",
+        #   "</table>",
+        #   "<br>"),
+        # HTML(paste0(
+        #   "<script>",
+        #     "var today = new Date();",
+        #     "var yyyy = today.getFullYear();",
+        #   "</script>",
+        #   "<p style = 'text-align: center;'><small>&copy; - <a href='https://alessiobenedetti.com' target='_blank'>alessiobenedetti.com</a> - <script>document.write(yyyy);</script></small></p>")
+        # ))
       )
       
     ), # end dashboardSidebar
