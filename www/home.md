@@ -15,7 +15,7 @@ Voici une to-do list provisionnelle
   - [ ] Lorsque l'on clique sur une zone, faire en sorte que cela puisse 
   renvoyer sur la partie `Species Tables` pour permettre de télécharger les 
   données associées 
-  - [ ] Filter les résultats par année de première observation
+  - [X] Filter les résultats par année de première observation
   - [ ] Filter les résultats par groupe taxonomiques
   - [ ] Ajouter un bar plot pour visualiser les données en fonction des groupes
   taxonomiques et du temps
