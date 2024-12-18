@@ -1,11 +1,36 @@
-## Welcome !
+## Bienvenue !
 <br><br>
-<i> Biodiversity in National Parks</i> is an app that let you visualize [Kaggle's biodiversity dataset](https://www.kaggle.com/nationalparkservice/park-biodiversity).
+<i> NIS Atlas of European Water</i> est le projet d'application Shiny qui 
+regroupe l'ensemble des ENIs marines européennes.
+L'application vous permet de visualiser les données, en fonction des groupes
+taxonomiques d'intérêt, du temps et de les télécharger.
 
-From the left navigation panel you'll be able to access the maps, data and charts concerning the US National Parks and their resident species.
+Voici une to-do list provisionnelle
 
-It has been made with [shiny](https://shiny.rstudio.com/) and you may find the code on [github](https://github.com/abenedetti/bioNPS/) and [rcloud](https://rstudio.cloud/project/246130). 
+- Logo:
+  - [ ] Créer un logo
 
-For a quick walkthrough have a look a the video below.
-<br><br><br>
-<iframe style = "display: block; margin: auto;" width="640" height="360" src="https://www.youtube.com/embed/Qu2J2ytWqxA?hd=1"></iframe>
+- European Introduction Map:
+  - [X] Créer une carte intéractive pour visualiser ces données
+  - [ ] Lorsque l'on clique sur une zone, faire en sorte que cela puisse 
+  renvoyer sur la partie `Species Tables` pour permettre de télécharger les 
+  données associées 
+  - [ ] Filter les résultats par année de première observation
+  - [ ] Filter les résultats par groupe taxonomiques
+  - [ ] Ajouter un bar plot pour visualiser les données en fonction des groupes
+  taxonomiques et du temps
+  
+- Map Origin of NIS in Europe:
+  - [X] Créer une carte intéractive pour visualiser ces données
+  - [ ] Lorsque l'on clique sur une zone, faire en sorte que cela puisse 
+  renvoyer sur la partie `Species Tables` pour permettre de télécharger les 
+  données associées 
+  - [ ] Filter les résultats par groupe taxonomiques
+  - [ ] Ajouter un upset plot pour visualiser les données en fonction des groupes
+  taxonomiques et du temps
+
+- Species Tables:
+  - [X] Créer un tableau intéractif pour explorer les données
+  - [ ] Permettre de télécharger les données sur les espèces selectionnées
+  - [ ] Sélectionner les espèces par écoregion d'introduction
+  - [ ] Sélectionner les espèces par écoregion 
