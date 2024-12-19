@@ -26,7 +26,7 @@ Voici une to-do list provisionnelle
   renvoyer sur la partie `Species Tables` pour permettre de télécharger les 
   données associées 
   - [ ] Filter les résultats par groupe taxonomiques
-  - [ ] Ajouter un upset plot pour visualiser les données en fonction des groupes
+  - [X] Ajouter un upset plot pour visualiser les données en fonction des groupes
   taxonomiques et du temps
 
 - Species Tables:

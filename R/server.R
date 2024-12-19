@@ -1,7 +1,12 @@
 library(shiny)
 library(tidyverse)
+library(sf)
+library(ComplexUpset)
 library(DT)
 library(dm)
+theme_set(theme_minimal())
+theme_update(panel.grid.minor = element_blank())
+
 
 ##################
 # DATA WRANGLING #
@@ -21,6 +26,7 @@ source("plot_cumsum_inv_europe.R")
 source("synchronise_sliders.R")
 source("map_inv_eu.R")
 source("map_inv_origin.R")
+source("plot_setup_orgin.R")
 
 ################
 # SERVER LOGIC #
@@ -54,6 +60,12 @@ server <- function(input, output, session){
   output$OriginMap <- renderLeaflet({
     
     nis_origin_map(input$meow_select)
+    
+  })
+  
+  output$OriginUpSet <- renderPlot({
+    
+    upset_plot(input$select_taxo_setup)
     
   })
   
