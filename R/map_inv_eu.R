@@ -1,15 +1,3 @@
-library(tidyverse)
-library(dm)
-library(leaflet)
-library(sf)
-# htmltools::
-# htmlwidgets::
-sf_use_s2(FALSE)
-
-load("../data/meow.RData")
-
-dm_data <- readRDS("../data/NIS_Europe_RDBM.rds")
-
 meow_europe <- meow_eco %>%
   filter(ECO_CODE_X %in% c(2, 20:27, 29:36, 44)) %>%
   filter(!ECO_CODE_X %in% c(21, 23))

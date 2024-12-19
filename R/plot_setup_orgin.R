@@ -134,7 +134,7 @@ upset_plot <- function(group_of_interest){
         )) + theme_dark()),
     base_annotations = list(
       'Intersection size'=(
-        ComplexUpset::intersection_size(text = list(size = 5))
+        intersection_size(text = list(size = 5))
         + theme(panel.grid.minor = element_blank())
         + ylab('# Observations in intersection')
       )

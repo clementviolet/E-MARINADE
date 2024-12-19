@@ -1,5 +1,3 @@
-library(shiny)
-
 homeTabUI <- function() {
   tabItem(
     tabName = "home",

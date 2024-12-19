@@ -1,19 +1,3 @@
-##################################
-# Biodiversity in National Parks #
-# by Alessio Benedetti           #
-# ui.R file                      #
-##################################
-
-library(shiny)
-library(shinydashboard)
-
-# library(leaflet)
-# library(shinydashboard)
-# library(collapsibleTree)
-# library(shinycssloaders)
-# library(DT)
-# library(tigris)
-
 ###########
 # LOAD UI #
 ###########

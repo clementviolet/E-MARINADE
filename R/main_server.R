@@ -1,13 +1,3 @@
-library(shiny)
-library(tidyverse)
-library(sf)
-library(ComplexUpset)
-library(DT)
-library(dm)
-theme_set(theme_minimal())
-theme_update(panel.grid.minor = element_blank())
-
-
 ##################
 # DATA WRANGLING #
 ##################

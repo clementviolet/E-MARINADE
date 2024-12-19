@@ -1,5 +1,3 @@
-library(shiny)
-
 globalStyles <- function() {
   tagList(
     # Include custom styles

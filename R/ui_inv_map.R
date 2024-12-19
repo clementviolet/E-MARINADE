@@ -1,5 +1,3 @@
-library(shiny)
-
 invMapUI <- function() {
   tabItem(
     tabName = "inv_map",
