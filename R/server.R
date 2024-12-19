@@ -74,11 +74,14 @@ server <- function(input, output, session){
   #############################
   
   output$speciesDataTable <- renderDT(
-    taxo %>% select(Kingdom:Species, AphiaID:algaebaseID),
-    filter = "top",
-    colnames = c(
-      "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species",
-      "AphiaID", "tsnID", "boldID", "eolID", "fishbaseID", "algaebaseID"
-    )
+    datatable(
+      data = taxo %>% select(Kingdom:Species, AphiaID:algaebaseID),
+      filter = "top", extensions = c("Buttons", "Scroller"), 
+      options = list(
+        dom = "Bfrtip", extend = 'collection', buttons = c("copy", "csv", "excel"), # Buttons,
+        deferRender = TRUE, scrollY = 200, scrollX = 200, scroller = TRUE # Scroller
+      )
+    ),
+    server = FALSE
   )
 }

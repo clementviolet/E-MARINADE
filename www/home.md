@@ -31,6 +31,6 @@ Voici une to-do list provisionnelle
 
 - Species Tables:
   - [X] Créer un tableau intéractif pour explorer les données
-  - [ ] Permettre de télécharger les données sur les espèces selectionnées
+  - [X] Permettre de télécharger les données sur les espèces selectionnées
   - [ ] Sélectionner les espèces par écoregion d'introduction
   - [ ] Sélectionner les espèces par écoregion 
