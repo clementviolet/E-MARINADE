@@ -63,7 +63,8 @@ body <- function(){
     tabItems(
       homeTabUI(),
       invMapUI(),
-      OrgMapUI()
+      OrgMapUI(),
+      tableTabUI()
     )
   )
   
