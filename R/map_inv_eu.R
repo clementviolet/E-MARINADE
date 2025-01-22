@@ -19,9 +19,10 @@ invasion_eu_map <- function(year = 2023){
     count(Ecoregion_Code)
   
   data_plot <- meow_europe %>%
-    left_join(nb_inv_ecoregion, by = c("ECO_CODE_X" = "Ecoregion_Code"))
+    left_join(nb_inv_ecoregion, by = c("ECO_CODE_X" = "Ecoregion_Code")) %>%
+    replace_na(list(n = 0))
   
-  pal <- colorNumeric("viridis", NULL)
+  pal <- colorBin("viridis", NULL, bins = seq(0, 800, 5))
   
   m <- leaflet(data_plot) %>%
     addTiles(options = tileOptions(
@@ -32,20 +33,21 @@ invasion_eu_map <- function(year = 2023){
     addPolygons(
       color = "grey", weight = 1,
       fillOpacity = 1,
-      fillColor = ~pal(log1p(n)),
+      fillColor = ~pal(n),
       popup = glue::glue(
         "Ecoregion: {data_plot$ECOREGION}<br>",
-        "NIS count: {if_else(is.na(data_plot$n), 0, data_plot$n)}<br>"
+        "NIS count: {data_plot$n}<br>"
       ),
       label = glue::glue(
         "Ecoregion: {data_plot$ECOREGION} | ",
-        "NIS count: {if_else(is.na(data_plot$n), 0, data_plot$n)}"
+        "NIS count: {data_plot$n}"
       ),
     ) %>%
     addLegend(
-      pal = pal, values = ~log1p(n),
+      colors = pal(c(0, 100, 200, 300, 400, 500, 600, 700, 800)),
+      labels = as.character(c(0, 100, 200, 300, 400, 500, 600, 700, 800)),
       title = "NIS Count",
-      labFormat = labelFormat(transform = function(x) round(expm1(x))),
+      labFormat = labelFormat(transform = function(x) x),
       opacity = 1, na.label = "0"
     ) %>%
     setMaxBounds(
@@ -57,3 +59,5 @@ invasion_eu_map <- function(year = 2023){
   return(m)
   
 }
+
+pal(c(0, 25, 50, 100, 150, 200, 300, 400, 600, 800))
