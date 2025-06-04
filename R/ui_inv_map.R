@@ -10,49 +10,42 @@ invMapUI <- function() {
     fluidRow(
       column(
         width = 12,
-        tags$h2("European Introduction Rate")
-      )
-    ),
-    fluidRow(
-      column(
-        width = 12,
-        tags$p("Plot showing the cumulative number of NIS observed in European waters")
-      )
-    ),
-    fluidRow(
-      column(
-        width = 12,
-        plotOutput("InvCumSumAll", height = "400px")
-      )
-    ),
-    fluidRow(
-      column(
-        width = 12,
-        tags$h2("European Introduction Map")
-      )
-    ),
-    fluidRow(
-      column(
-        width = 12,
+        tags$h2("European Introduction Map"),
         tags$p(
-          "The slider and numeric input control the year of first sighting, including species sighted earlier."
+          "Use the map below to explore non-indigenous species (NIS) present in each Eureopan ecoregion. ",
+          "Click on one or multiple polygons to select ecoregions and view the corresponding NIS in the table. ",
+          "You can filter the table using the column headers, export the data using the buttons above the table, ",
+          "and reset your selection at any time by clicking the ",
+          tags$span("Reset Table", style = "font-weight: bold; background-color: #f0f0f0; padding: 2px 6px; border-radius: 4px; border: 1px solid #ccc;"),
+          "button. "
         )
-      )
-    ),
-    fluidRow(
-      column(
-        width = 6,
-        sliderInput("obs_year_slid", "", min = 1492, max = 2023, value = 1492, sep = "")
-      ),
-      column(
-        width = 6,
-        numericInput("obs_year_inpt", "", min = 1942, max = 2023, value = 1492)
       )
     ),
     fluidRow(
       column(
         width = 12,
         leafletOutput("InvasionMap", height = "600px")
+      )
+    ),
+    fluidRow(
+      column(
+        width = 12,
+        br(), br(),
+        div(
+          style = "display: flex; align-items: center; justify-content: flex-start; gap: 20px; margin-bottom: 20px;",
+          div(
+            style = "font-size: 16px; color: #444;",
+            tags$span("Selected Ecoregion: "),
+            htmlOutput("selectedRegion", inline = TRUE)
+          ),
+          actionButton(
+            "resetTable", "Reset Table",
+            class = "btn btn-lg",
+            style = "padding: 10px 30px; font-size: 16px; margin: 0;"
+          )
+        ),
+        br(),
+        DTOutput("InvspeciesDataTable") %>% withSpinner(color = "blue")
       )
     )
   )

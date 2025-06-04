@@ -7,6 +7,7 @@ source("ui_inv_map.R")
 source("ui_table.R")
 source("ui_styles.R")
 source("ui_org_map.R")
+source("ui_table_map.R")
 
 sidebar <- function(){
   
@@ -36,6 +37,10 @@ sidebar <- function(){
       menuItem(
         "Species Tables",
         tabName = "table", icon = icon("table")
+      ),
+      menuItem(
+        "Species Table & Map",
+        tabName = "table_map", icon = icon("table")
       )
     )
   )
@@ -48,7 +53,8 @@ body <- function(){
       homeTabUI(),
       invMapUI(),
       OrgMapUI(),
-      tableTabUI()
+      tableTabUI(),
+      tableMapUI()
     )
   )
   
