@@ -87,7 +87,14 @@ invasion_eu_table <- function(ecoregion) {
     }
     
     datatable(
-      data = data %>% select(AphiaID, Ecoregion = ECOREGION, Country, Kingdom:Species),
+      data = data %>%  select(
+        Kingdom:Species, AphiaID:ncbiID, 
+        Year:MSFD_subregion, 
+        REALM, RLM_CODE, 
+        PROVINCE, PROV_CODE, 
+        ECOREGION, ECO_CODE = Ecoregion_Code,
+        Source, DB
+      ), #select(AphiaID, Ecoregion = ECOREGION, Country, Kingdom:Species),
       filter = "top", extensions = c("Buttons", "Scroller"), 
       options = list(
         dom = "Bfrtip", buttons = c("copy", "csv", "excel"),

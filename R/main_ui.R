@@ -8,6 +8,7 @@ source("ui_table.R")
 source("ui_styles.R")
 source("ui_org_map.R")
 source("ui_table_map.R")
+source("speciesSearchUI.R")
 
 sidebar <- function(){
   
@@ -31,17 +32,21 @@ sidebar <- function(){
         tabName = "inv_map", icon = icon("map")
       ),
       menuItem(
-        "European NIS Origins",
-        tabName = "org_map", icon = icon("map")
-      ),
-      menuItem(
-        "Species Tables",
-        tabName = "table", icon = icon("table")
-      ),
-      menuItem(
-        "Species Table & Map",
-        tabName = "table_map", icon = icon("table")
-      )
+        "Species Explorer",
+        tabName = "species_search", icon = icon("globe")
+      )#,
+      # menuItem(
+      #   "European NIS Origins",
+      #   tabName = "org_map", icon = icon("map")
+      # ),
+      # menuItem(
+      #   "Species Tables",
+      #   tabName = "table", icon = icon("table")
+      # ),
+      # menuItem(
+      #   "Species Table & Map",
+      #   tabName = "table_map", icon = icon("table")
+      # )
     )
   )
 }
@@ -52,9 +57,10 @@ body <- function(){
     tabItems(
       homeTabUI(),
       invMapUI(),
-      OrgMapUI(),
-      tableTabUI(),
-      tableMapUI()
+      speciesSearchUI()#,
+      # OrgMapUI(),
+      # tableTabUI(),
+      # tableMapUI()
     )
   )
   
