@@ -1,0 +1,37 @@
+Package: emarinade
+Title: European MARIne Alien Data Explorer
+Version: 0.0.1
+Authors@R: c(
+    person("Clément", "Violet", , "clement.violet@ifremer.fr", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-5000-0004")),
+    person("Mathieu", "Chevalier", role = "aut",
+           comment = c(ORCID = "0000-0001-5000-0001")),
+    person("Amelia", "Curd", role = "aut",
+           comment = c(ORCID = "0000-0001-5000-0001")),
+    person("Frédérique", "Viard", role = "aut",
+           comment = c(ORCID = "0000-0001-5000-0001")),
+    person("Mathisse", "Meyneng", role = "ctb",
+           comment = c(ORCID = "0000-0001-5000-0004", Other = "Logo designer"))
+  )
+Description: A Shiny application to explore marine non-indigenous species
+    in European waters.
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+License: CC0
+Imports:
+    dm,
+    dplyr,
+    DT,
+    glue,
+    leaflet,
+    magrittr,
+    purrr,
+    sf,
+    shiny,
+    shinycssloaders,
+    shinydashboard,
+    stringr,
+    tidyr
+Depends:
+    R (>= 3.5)
