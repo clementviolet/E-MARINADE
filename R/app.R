@@ -24,7 +24,8 @@ shiny_emarinade <- function(){
   })
 
   data_env <- new.env()
-  load("inst/app/data/shiny_app_data.rda", envir = data_env)
+  data_path <- system.file("app/data/shiny_app_data.rda", package = "emarinade")
+  load(data_path, envir = data_env)
 
   dm_data <- dm::dm_get_tables(data_env$dm_data)
 
@@ -41,8 +42,15 @@ shiny_emarinade <- function(){
   # Normally it is automatic
   shiny::addResourcePath("wwww", system.file("www", package = "emarinade"))
 
-  source("inst/app/main_ui.R", local = TRUE)
-  source("inst/app/main_server.R", local = TRUE)
+  source(
+    system.file("app/main_ui.R", package = "emarinade"),
+    local = TRUE
+  )
+  
+  source(
+    system.file("app/main_server.R", package = "emarinade"),
+    local = TRUE
+  )
 
   # Run the application
 
