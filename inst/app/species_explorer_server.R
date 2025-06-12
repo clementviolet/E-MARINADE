@@ -119,24 +119,15 @@ speciesExplorerServer <- function(input, output, session, dm_data, meow_eco) {
         Source, Comment
       )
     
-    if(is.na(origin_data$ECO_CODE)){
+    if(all(is.na(origin_data$ECO_CODE))){
       
       origin_data <- origin_data %>%
         slice(0)
       
-    }else{
+    } else {
       
-      origin_data <- dm_data$origin_tbl %>%
-        filter(SpeciesID %in% selected_species()) %>%
-        dplyr::left_join(meow_eco, by = c("ECO_CODE_X" = "ECO_CODE_X")) %>%
-        dplyr::left_join(dm_data$taxo_tbl, by = "SpeciesID") %>% 
-        dplyr::select(
-          Kingdom:Species, AphiaID:ncbiID, 
-          REALM, RLM_CODE, 
-          PROVINCE, PROV_CODE, 
-          ECOREGION, ECO_CODE = ECO_CODE_X,
-          Source, Comment
-        )
+      origin_data <- origin_data %>%
+        filter(!is.na(ECO_CODE))
       
     }
     
