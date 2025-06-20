@@ -9,6 +9,7 @@ source("inst/app/ui_inv_map.R", local = TRUE)
 # source("ui_org_map.R")
 # source("ui_table_map.R")
 source("inst/app/speciesSearchUI.R", local = TRUE)
+# source("inst/app/ui_textsp.R", local = TRUE)
 
 sidebar <- function(){
   
@@ -34,7 +35,11 @@ sidebar <- function(){
       shinydashboard::menuItem(
         "Species Explorer",
         tabName = "species_search", icon = shiny::icon("globe")
-      )
+      )#,
+      # shinydashboard::menuItem(
+      #   "Species Text",
+      #   tabName = "text_sp", icon = shiny::icon("file-lines")
+      # )
     )
   )
 }
@@ -54,16 +59,17 @@ body <- function(){
 ui <- shinydashboard::dashboardPage(
   skin = "blue",
   header = shinydashboard::dashboardHeader(
-    title = shiny::tagList(
-      shiny::tags$div(
-        style = "line-height: 1.2;",
-        shiny::tags$strong("E-MARINADE"),
-        shiny::tags$div(
-          "Mapping the Origins and Spread of Marine Non-Indigenous Species in European Waters",
-          style = "font-size: 12px; color: #ccc;"
-        )
-      )
-    ),
+    title = "E-MARINADE",
+    #   shiny::tagList(
+    #   shiny::tags$div(
+    #     style = "line-height: 1.2;",
+    #     shiny::tags$strong("E-MARINADE"),
+    #     shiny::tags$div(
+    #       "Mapping the Origins and Spread of Marine Non-Indigenous Species in European Waters",
+    #       style = "font-size: 12px; color: #ccc;"
+    #     )
+    #   )
+    # ),
     titleWidth = 300
   ),
   sidebar = sidebar(),
@@ -72,7 +78,7 @@ ui <- shinydashboard::dashboardPage(
     shinydashboard::tabItems(
       homeTabUI(),
       invMapUI(),
-      speciesSearchUI()
+      speciesSearchUI("species_explorer")
     )
   )
 )

@@ -64,19 +64,8 @@ server <- function(input, output, session){
   output$InvspeciesDataTable <- invasion_eu_table(selected_ecoregions)
   
   #############################
-  #      Species Research     #
+  #      Species Explorer     #
   #############################
-  
-  speciesExplorerServer(input, output, session, dm_data, meow_eco)
-  
-  proxy <- DT::dataTableProxy("speciesTaxoTable")
-  
-  # Create a button to de-select the rows of the first table
-  shiny::observeEvent(input$clearSelection, {
-    
-    proxy %>%
-      DT::selectRows(NULL)
-    
-  })
+  speciesExplorerServer("species_explorer", dm_data, meow_eco)
   
 }
