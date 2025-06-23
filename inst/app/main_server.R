@@ -4,8 +4,14 @@
 
 server <- function(input, output, session){
   
-  source("inst/app/map_inv_eu.R", local = TRUE)
-  source("inst/app/species_explorer_server.R", local = TRUE)
+  source(
+    system.file("app/map_inv_eu.R", package = "emarinade"),
+    local = TRUE
+  )
+  source(
+    system.file("app/species_explorer_server.R", package = "emarinade"),
+    local = TRUE
+  )
   
   #############################
   #            Home           #

@@ -2,14 +2,25 @@
 # LOAD UI #
 ###########
 
-source("inst/app/ui_styles.R", local = TRUE)
-source("inst/app/ui_home.R", local = TRUE)
-source("inst/app/ui_inv_map.R", local = TRUE)
-# source("ui_table.R")
-# source("ui_org_map.R")
-# source("ui_table_map.R")
-source("inst/app/speciesSearchUI.R", local = TRUE)
-# source("inst/app/ui_textsp.R", local = TRUE)
+source(
+  system.file("app/ui_styles.R", package = "emarinade"),
+  local = TRUE
+)
+
+source(
+  system.file("app/ui_home.R", package = "emarinade"),
+  local = TRUE
+)
+
+source(
+  system.file("app/ui_inv_map.R", package = "emarinade"),
+  local = TRUE
+)
+
+source(
+  system.file("app/speciesSearchUI.R", package = "emarinade"),
+  local = TRUE
+)
 
 sidebar <- function(){
   

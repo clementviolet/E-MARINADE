@@ -1,6 +1,6 @@
 homeTabUI <- function() {
   shinydashboard::tabItem(
     tabName = "home",
-    shiny::includeMarkdown("inst/www/home.md")
+    shiny::includeMarkdown(system.file("www/home.md", package = "emarinade"))
   )
 }
