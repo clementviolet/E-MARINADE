@@ -32,6 +32,8 @@ Imports:
     shinycssloaders,
     shinydashboard,
     stringr,
+    tibble,
     tidyr
 Depends:
     R (>= 3.5)
+LazyData: true
