@@ -31,9 +31,24 @@ shiny_emarinade <- function(){
   meow_eco <- data_env$meow_eco
   meow_prov <- data_env$meow_prov
   meow_rlm <- data_env$meow_rlm
+  
+  europe_ecoregions <- c(2, 20:27, 29, 30:36, 44)
 
   rm(data_env)
-
+  
+  # Retrieve species native of EU but NIS in other part of EU
+  
+  eu_nativeID <- dm_data$origin_tbl %>% 
+    dplyr::filter(ECO_CODE_X %in% europe_ecoregions) %>% 
+    dplyr::pull(SpeciesID) %>% 
+    unique()
+  
+  dm_data$inv_tbl <- dm_data$inv_tbl %>%
+    dplyr::mutate(
+      EU_native = dplyr::if_else(SpeciesID %in% eu_nativeID, TRUE, FALSE),
+      .after = "Country"
+    )
+  
   # Shiny App per say
 
   # Shiny ressources
