@@ -199,7 +199,7 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
         }
         map %>%
           leaflet::addLegend(
-            position = "bottomright",
+            position = "bottomleft",
             colors = c("#2c7bb6", "#d7191c")[c(nrow(native_polygons) > 0, nrow(inv_polygons) > 0)],
             labels = c("Native", "Introduced")[c(nrow(native_polygons) > 0, nrow(inv_polygons) > 0)],
             title = NULL
