@@ -1,5 +1,5 @@
 speciesSearchUI <- function(id) {
-  ns <- NS(id)
+  ns <- shiny::NS(id)
   
   shinydashboard::tabItem(
     tabName = "species_search",
