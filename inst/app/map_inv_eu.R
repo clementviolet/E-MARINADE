@@ -101,5 +101,5 @@ invasion_eu_table <- function(ecoregion) {
         deferRender = TRUE, scrollY = 200, scrollX = 400, scroller = TRUE
       )
     )
-  })
+  }, server = FALSE)
 }

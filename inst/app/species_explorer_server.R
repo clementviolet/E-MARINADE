@@ -155,7 +155,7 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
           scrollY = 200, scrollX = 400, scroller = TRUE
         )
       )
-    })
+    }, server = FALSE)
     
     output$selectedSpecies <- renderUI({
       req(matched_species_ids())
@@ -221,7 +221,7 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
       DT::datatable(inv_data, extensions = c("Buttons", "Scroller"),
                     options = list(dom = "Bfrtip", buttons = c("copy", "csv", "excel"),
                                    scrollY = 200, scrollX = 400, scroller = TRUE))
-    })
+    }, server = FALSE)
     
     output$originDataTable <- DT::renderDT({
       req(matched_species_ids())
@@ -242,7 +242,7 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
       DT::datatable(origin_data, extensions = c("Buttons", "Scroller"),
                     options = list(dom = "Bfrtip", buttons = c("copy", "csv", "excel"),
                                    scrollY = 200, scrollX = 400, scroller = TRUE))
-    })
+    }, server = FALSE)
     
     # Create a button to de-select the rows of the first table
     proxy <- DT::dataTableProxy("speciesTaxoTable")
