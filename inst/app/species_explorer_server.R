@@ -346,7 +346,7 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
                       REALM, RLM_CODE, PROVINCE, PROV_CODE,
                       ECOREGION, ECO_CODE = Ecoregion_Code, Source, DB)
       
-      DT::datatable(inv_data, extensions = c("Buttons", "Scroller"),
+      DT::datatable(inv_data, extensions = c("Buttons", "Scroller"), filter = "top",
                     options = list(dom = "Bfrtip", buttons = c("copy", "csv", "excel"),
                                    scrollY = 200, scrollX = 400, scroller = TRUE))
     }, server = FALSE)
@@ -367,7 +367,7 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
         origin_data <- origin_data %>% dplyr::filter(!is.na(ECO_CODE))
       }
       
-      DT::datatable(origin_data, extensions = c("Buttons", "Scroller"),
+      DT::datatable(origin_data, extensions = c("Buttons", "Scroller"), filter = "top",
                     options = list(dom = "Bfrtip", buttons = c("copy", "csv", "excel"),
                                    scrollY = 200, scrollX = 400, scroller = TRUE))
     }, server = FALSE)
