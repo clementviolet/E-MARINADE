@@ -157,54 +157,182 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
       )
     }, server = FALSE)
     
-    output$selectedSpecies <- renderUI({
-      req(matched_species_ids())
-      species_name <- dm_data$taxo_tbl %>%
-        dplyr::filter(SpeciesID %in% matched_species_ids()) %>%
-        dplyr::pull(Species) %>%
-        unique()
-      shiny::HTML(paste(species_name, collapse = ", "))
+    output$SpeciesListPicker <- shiny::renderUI({
+      
+      ids <- matched_species_ids()
+      if (is.null(ids)) ids <- character(0)
+      
+      choices <- dm_data$taxo_tbl %>%
+        dplyr::filter(SpeciesID %in% ids) %>%
+        dplyr::distinct(SpeciesID, Species) %>%
+        dplyr::arrange(Species)
+      
+      shinyWidgets::pickerInput(
+        inputId = ns("SpeciesListPicker"),
+        label = "Select Species to Map below", 
+        choices = stats::setNames(choices$SpeciesID, choices$Species),
+        multiple = TRUE,
+        options = shinyWidgets::pickerOptions(container = "body", 
+                                              actionsBox = TRUE),
+        width = "100%"
+      )
+      
+    })
+    
+    selected_species_ids <- reactive({
+      if (input_mode() == "text") {
+        # In text mode, use what the user picked from the pickerInput
+        
+        input$SpeciesListPicker
+        
+      } else {
+        # In table mode, use matched_species_ids()
+        matched_species_ids()
+      }
     })
     
     output$speciesCombinedMap <- leaflet::renderLeaflet({
-      selected <- tryCatch(matched_species_ids(), error = function(e) NULL)
-      if (length(selected) == 0 || is.null(selected)) {
-        leaflet::leaflet() %>% leaflet::addTiles()
-      } else {
-        origin_data <- dm_data$origin_tbl %>%
-          dplyr::filter(SpeciesID %in% selected)
-        inv_data <- dm_data$inv_tbl %>%
-          dplyr::filter(SpeciesID %in% selected)
-        native_polygons <- meow_eco %>%
-          dplyr::filter(ECO_CODE_X %in% origin_data$ECO_CODE_X)
-        inv_polygons <- meow_eco %>%
-          dplyr::filter(ECO_CODE_X %in% inv_data$Ecoregion_Code)
+      
+      selected <- selected_species_ids()
+      
+      # Handle empty selections
+      if (is.null(selected) || length(selected) == 0) {
         
-        map <- leaflet::leaflet() %>% leaflet::addTiles()
-        if (nrow(native_polygons) > 0) {
-          map <- map %>%
-            leaflet::addPolygons(data = native_polygons,
-                                 fillColor = "#2c7bb6", fillOpacity = 0.7,
-                                 color = "#1c5c99", weight = 1,
-                                 label = ~ECOREGION,
-                                 group = "Native")
-        }
-        if (nrow(inv_polygons) > 0) {
-          map <- map %>%
-            leaflet::addPolygons(data = inv_polygons,
-                                 fillColor = "#d7191c", fillOpacity = 0.5,
-                                 color = "#a31616", weight = 1,
-                                 label = ~ECOREGION,
-                                 group = "Introduced")
-        }
-        map %>%
-          leaflet::addLegend(
-            position = "bottomleft",
-            colors = c("#2c7bb6", "#d7191c")[c(nrow(native_polygons) > 0, nrow(inv_polygons) > 0)],
-            labels = c("Native", "Introduced")[c(nrow(native_polygons) > 0, nrow(inv_polygons) > 0)],
-            title = NULL
+        return(leaflet::leaflet() %>% leaflet::addTiles())
+        
+      }
+      
+      # Ensure IDs are the correct type
+      selected <- as.numeric(selected)  # make sure to match SpeciesID column type
+      
+      # Filter origin and invasion data
+      origin_data <- dm_data$origin_tbl %>%
+        dplyr::filter(SpeciesID %in% selected) %>%
+        dplyr::add_count(ECO_CODE_X)
+      
+      inv_data <- dm_data$inv_tbl %>%
+        dplyr::filter(SpeciesID %in% selected) %>%
+        dplyr::arrange(SpeciesID, Year) %>%
+        dplyr::distinct(SpeciesID, Ecoregion_Code, .keep_all = TRUE) %>%
+        dplyr::add_count(Ecoregion_Code)
+      
+      # Get matching polygons
+      native_polygons_unique <- meow_eco %>%
+        dplyr::filter(ECO_CODE_X %in% origin_data$ECO_CODE_X[origin_data$n == 1])
+      
+      native_polygons_multiple <- meow_eco %>%
+        dplyr::filter(ECO_CODE_X %in% origin_data$ECO_CODE_X[origin_data$n > 1])
+      
+      inv_polygons_unique <- meow_eco %>%
+        dplyr::filter(ECO_CODE_X %in% inv_data$Ecoregion_Code[inv_data$n == 1])
+      
+      inv_polygons_multiple <- meow_eco %>%
+        dplyr::filter(ECO_CODE_X %in% inv_data$Ecoregion_Code[inv_data$n > 1])
+      
+      nat_inv_polygons <- dplyr::distinct(origin_data, ECO_CODE_X) %>%
+        dplyr::filter(ECO_CODE_X %in% dplyr::pull(dplyr::distinct(inv_data, Ecoregion_Code), Ecoregion_Code)) %>%
+        dplyr::distinct(ECO_CODE_X, .keep_all = TRUE) %>%
+        dplyr::left_join(meow_eco, by = "ECO_CODE_X") %>%
+        sf::st_as_sf()
+      
+      # Remove the polygon of native and inv polygons in case nat_inv polygon is
+      # not null
+      
+      if(nrow(nat_inv_polygons) > 0){
+        
+        native_polygons_unique <- native_polygons_unique %>%
+          dplyr::filter(!ECO_CODE_X %in% nat_inv_polygons$ECO_CODE_X)
+        
+        native_polygons_multiple <- native_polygons_multiple %>%
+          dplyr::filter(!ECO_CODE_X %in% nat_inv_polygons$ECO_CODE_X)
+        
+        inv_polygons_unique <- inv_polygons_unique %>%
+          dplyr::filter(!ECO_CODE_X %in% nat_inv_polygons$ECO_CODE_X)
+        
+        inv_polygons_multiple <- inv_polygons_multiple %>%
+          dplyr::filter(!ECO_CODE_X %in% nat_inv_polygons$ECO_CODE_X)
+        
+      }
+      
+      native_polygons_unique <- native_polygons_unique %>%
+        dplyr::distinct(ECO_CODE_X, .keep_all = TRUE)
+      
+      native_polygons_multiple <- native_polygons_multiple %>%
+        dplyr::distinct(ECO_CODE_X, .keep_all = TRUE)
+      
+      inv_polygons_unique <- inv_polygons_unique %>%
+        dplyr::distinct(ECO_CODE_X, .keep_all = TRUE)
+      
+      inv_polygons_multiple <- inv_polygons_multiple %>%
+        dplyr::distinct(ECO_CODE_X, .keep_all = TRUE)
+      
+      # Build base map
+      map <- leaflet::leaflet() %>% leaflet::addTiles()
+      
+      if (nrow(native_polygons_unique) > 0) {
+        map <- map %>%
+          leaflet::addPolygons(
+            data = native_polygons_unique,
+            fillColor = "#4db3ff", fillOpacity = 0.5,
+            color = "#1c5c99", weight = 1,
+            label = ~ECOREGION,
+            group = "Native"
           )
       }
+      
+      if (nrow(native_polygons_multiple) > 0) {
+        map <- map %>%
+          leaflet::addPolygons(
+            data = native_polygons_multiple,
+            fillColor = "#1c5c99", fillOpacity = 1,
+            color = "#1c5c99", weight = 1,
+            label = ~ECOREGION,
+            group = "NativeMul"
+          )
+      }
+      
+      if (nrow(inv_polygons_unique) > 0) {
+        map <- map %>%
+          leaflet::addPolygons(
+            data = inv_polygons_unique,
+            fillColor = "#d7191c", fillOpacity = 0.5,
+            color = "#a31616", weight = 1,
+            label = ~ECOREGION,
+            group = "Introduced"
+          )
+      }
+      
+      if (nrow(inv_polygons_multiple) > 0) {
+        map <- map %>%
+          leaflet::addPolygons(
+            data = inv_polygons_multiple,
+            fillColor = "#4d0c01", fillOpacity = 1,
+            color = "#4d0c01", weight = 1,
+            label = ~ECOREGION,
+            group = "IntroducedMul"
+          )
+      }
+      
+      if (nrow(nat_inv_polygons) > 0) {
+        map <- map %>%
+          leaflet::addPolygons(
+            data = nat_inv_polygons,
+            fillColor = "#ffeb33", fillOpacity = 0.8,
+            color = "#a39622", weight = 1,
+            label = ~ECOREGION,
+            group = "IntroducedNative"
+          )
+      }
+      
+      # Add legend (conditionally)
+      map %>%
+        leaflet::addLegend(
+          position = "bottomleft",
+          opacity = 1,
+          colors = c("#4db3ff", "#1c5c99", "#ffeb33", "#ff0000", "#4d0c01")[c(nrow(native_polygons_unique) > 0, nrow(native_polygons_multiple) > 0, nrow(nat_inv_polygons) > 0, nrow(inv_polygons_unique) > 0, nrow(inv_polygons_multiple) > 0)],
+          labels = c("Native", "Native multiple sp.", "Native and Introduced", "Introduced", "Introduced multiple sp.")[c(nrow(native_polygons_unique) > 0, nrow(native_polygons_multiple) > 0,  nrow(nat_inv_polygons) > 0, nrow(inv_polygons_unique) > 0, nrow(inv_polygons_multiple) > 0)],
+          title = NULL
+        )
     })
     
     # DataTables

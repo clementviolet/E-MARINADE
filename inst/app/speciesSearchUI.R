@@ -89,6 +89,13 @@ speciesSearchUI <- function(id) {
     ),
     
     shiny::fluidRow(
+      shiny::column(
+        width = 12,
+        shiny::uiOutput(ns("SpeciesListPicker"))  # Renders the picker from the server
+      )
+    ),
+    
+    shiny::fluidRow(
       shiny::column(width = 12, leaflet::leafletOutput(ns("speciesCombinedMap"), height = "600px"))
     ),
     
