@@ -146,7 +146,14 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
     
     output$speciesTaxoTable <- DT::renderDT({
       DT::datatable(
-        dm_data$taxo_tbl %>% dplyr::select(Kingdom:Species, AphiaID:algaebaseID),
+        dm_data$taxo_tbl %>% 
+          dplyr::left_join(
+            dplyr::distinct(
+              dplyr::select(dm_data$inv_tbl, SpeciesID, EU_native),
+              SpeciesID, .keep_all = TRUE
+            ), 
+            by = "SpeciesID") %>%
+        dplyr::select(Kingdom:Species, EU_native, AphiaID:algaebaseID),
         selection = if (input_mode() == "table") "multiple" else "none",
         filter = "top",
         extensions = c("Buttons", "Scroller"),
@@ -211,6 +218,14 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
         dplyr::add_count(ECO_CODE_X)
       
       inv_data <- dm_data$inv_tbl %>%
+        dplyr::filter(Status == "Non-indigenous") %>%
+        dplyr::filter(SpeciesID %in% selected) %>%
+        dplyr::arrange(SpeciesID, Year) %>%
+        dplyr::distinct(SpeciesID, Ecoregion_Code, .keep_all = TRUE) %>%
+        dplyr::add_count(Ecoregion_Code)
+      
+      crypt_data <- dm_data$inv_tbl %>%
+        dplyr::filter(Status == "Cryptogenic") %>%
         dplyr::filter(SpeciesID %in% selected) %>%
         dplyr::arrange(SpeciesID, Year) %>%
         dplyr::distinct(SpeciesID, Ecoregion_Code, .keep_all = TRUE) %>%
@@ -229,28 +244,81 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
       inv_polygons_multiple <- meow_eco %>%
         dplyr::filter(ECO_CODE_X %in% inv_data$Ecoregion_Code[inv_data$n > 1])
       
-      nat_inv_polygons <- dplyr::distinct(origin_data, ECO_CODE_X) %>%
-        dplyr::filter(ECO_CODE_X %in% dplyr::pull(dplyr::distinct(inv_data, Ecoregion_Code), Ecoregion_Code)) %>%
+      crypt_polygons_unique <- meow_eco %>%
+        dplyr::filter(ECO_CODE_X %in% crypt_data$Ecoregion_Code[inv_data$n == 1])
+      
+      crypt_polygons_multiple <- meow_eco %>%
+        dplyr::filter(ECO_CODE_X %in% crypt_data$Ecoregion_Code[inv_data$n > 1])
+      
+      inv_crypt_eco_code <- inv_data %>%
+        dplyr::bind_rows(crypt_data) %>%
+        dplyr::group_split(Ecoregion_Code) %>%
+        purrr::keep(~{all(c("Cryptogenic", "Non-indigenous") %in% unique(.$Status))}) %>%
+        purrr::list_rbind()
+        
+      nat_inv_crypt_polygons <- dplyr::distinct(origin_data, ECO_CODE_X) %>%
+        dplyr::filter(
+          ECO_CODE_X %in% c(
+            inv_crypt_eco_code$Ecoregion_Code, inv_polygons_unique$ECO_CODE_X, 
+            inv_polygons_multiple$ECO_CODE_X, crypt_polygons_unique$ECO_CODE_X,
+            crypt_polygons_multiple$ECO_CODE_X
+          )
+        ) %>%
         dplyr::distinct(ECO_CODE_X, .keep_all = TRUE) %>%
         dplyr::left_join(meow_eco, by = "ECO_CODE_X") %>%
         sf::st_as_sf()
       
+      # Dealing with the case we have introduced and cryptogenic in the same polygon
+      
+      if(nrow(inv_crypt_eco_code) > 0){
+        
+        inv_polygons_unique <- inv_polygons_unique %>%
+          dplyr::filter(!ECO_CODE_X %in% inv_crypt_eco_code$Ecoregion_Code)
+        
+        inv_polygons_multiple <- inv_polygons_multiple %>%
+          dplyr::filter(!ECO_CODE_X %in% inv_crypt_eco_code$Ecoregion_Code)
+        
+        crypt_polygons_unique <- crypt_polygons_unique %>%
+          dplyr::filter(!ECO_CODE_X %in% inv_crypt_eco_code$Ecoregion_Code)
+        
+        crypt_polygons_multiple <- crypt_polygons_multiple %>%
+          dplyr::filter(!ECO_CODE_X %in% inv_crypt_eco_code$Ecoregion_Code)
+        
+        inv_crypt_polygons <- meow_eco %>%
+          dplyr::filter(ECO_CODE_X %in% inv_crypt_eco_code$Ecoregion_Code)
+        
+      } else {
+        
+        inv_crypt_polygons <- meow_eco %>%
+          dplyr::filter(is.na(ECO_CODE_X))
+        
+      }
+      
       # Remove the polygon of native and inv polygons in case nat_inv polygon is
       # not null
       
-      if(nrow(nat_inv_polygons) > 0){
+      if(nrow(nat_inv_crypt_polygons) > 0){
         
         native_polygons_unique <- native_polygons_unique %>%
-          dplyr::filter(!ECO_CODE_X %in% nat_inv_polygons$ECO_CODE_X)
+          dplyr::filter(!ECO_CODE_X %in% nat_inv_crypt_polygons$ECO_CODE_X)
         
         native_polygons_multiple <- native_polygons_multiple %>%
-          dplyr::filter(!ECO_CODE_X %in% nat_inv_polygons$ECO_CODE_X)
+          dplyr::filter(!ECO_CODE_X %in% nat_inv_crypt_polygons$ECO_CODE_X)
         
         inv_polygons_unique <- inv_polygons_unique %>%
-          dplyr::filter(!ECO_CODE_X %in% nat_inv_polygons$ECO_CODE_X)
+          dplyr::filter(!ECO_CODE_X %in% nat_inv_crypt_polygons$ECO_CODE_X)
         
         inv_polygons_multiple <- inv_polygons_multiple %>%
-          dplyr::filter(!ECO_CODE_X %in% nat_inv_polygons$ECO_CODE_X)
+          dplyr::filter(!ECO_CODE_X %in% nat_inv_crypt_polygons$ECO_CODE_X)
+        
+        crypt_polygons_unique <- crypt_polygons_unique %>%
+          dplyr::filter(!ECO_CODE_X %in% nat_inv_crypt_polygons$ECO_CODE_X)
+          
+        crypt_polygons_multiple <- crypt_polygons_multiple %>%
+          dplyr::filter(!ECO_CODE_X %in% nat_inv_crypt_polygons$ECO_CODE_X)
+        
+        inv_crypt_polygons <- inv_crypt_polygons %>%
+          dplyr::filter(!ECO_CODE_X %in% nat_inv_crypt_polygons$ECO_CODE_X)
         
       }
       
@@ -264,6 +332,12 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
         dplyr::distinct(ECO_CODE_X, .keep_all = TRUE)
       
       inv_polygons_multiple <- inv_polygons_multiple %>%
+        dplyr::distinct(ECO_CODE_X, .keep_all = TRUE)
+      
+      crypt_polygons_unique <- crypt_polygons_unique %>%
+        dplyr::distinct(ECO_CODE_X, .keep_all = TRUE)
+      
+      crypt_polygons_multiple <- crypt_polygons_multiple %>%
         dplyr::distinct(ECO_CODE_X, .keep_all = TRUE)
       
       # Build base map
@@ -313,14 +387,47 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
           )
       }
       
-      if (nrow(nat_inv_polygons) > 0) {
+      if (nrow(crypt_polygons_unique) > 0) {
         map <- map %>%
           leaflet::addPolygons(
-            data = nat_inv_polygons,
-            fillColor = "#ffeb33", fillOpacity = 0.8,
+            data = crypt_polygons_unique,
+            fillColor = "#ffeb33", fillOpacity = 0.5,
             color = "#a39622", weight = 1,
             label = ~ECOREGION,
-            group = "IntroducedNative"
+            group = "Cryptogenic"
+          )
+      }
+      
+      if (nrow(crypt_polygons_multiple) > 0) {
+        map <- map %>%
+          leaflet::addPolygons(
+            data = crypt_polygons_multiple,
+            fillColor = "#e8b600", fillOpacity = 1,
+            color = "#c29800", weight = 1,
+            label = ~ECOREGION,
+            group = "CryptogenicMul"
+          )
+      }
+      
+      if (nrow(inv_crypt_polygons) > 0) {
+        map <- map %>%
+          leaflet::addPolygons(
+            data = inv_crypt_polygons,
+            fillColor = "#fc8700", fillOpacity = 0.8,
+            color = "#c46900", weight = 1,
+            label = ~ECOREGION,
+            group = "IntroducedCrypt"
+          )
+      }
+      
+      if (nrow(nat_inv_crypt_polygons) > 0) {
+        map <- map %>%
+          leaflet::addPolygons(
+            data = nat_inv_crypt_polygons,
+            fillColor = "grey", fillOpacity = 0.8,
+            color = "grey50", weight = 1,
+            label = ~ECOREGION,
+            group = "IntroducedCrypt"
           )
       }
       
@@ -329,8 +436,8 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
         leaflet::addLegend(
           position = "bottomleft",
           opacity = 1,
-          colors = c("#4db3ff", "#1c5c99", "#ffeb33", "#ff0000", "#4d0c01")[c(nrow(native_polygons_unique) > 0, nrow(native_polygons_multiple) > 0, nrow(nat_inv_polygons) > 0, nrow(inv_polygons_unique) > 0, nrow(inv_polygons_multiple) > 0)],
-          labels = c("Native", "Native multiple sp.", "Native and Introduced", "Introduced", "Introduced multiple sp.")[c(nrow(native_polygons_unique) > 0, nrow(native_polygons_multiple) > 0,  nrow(nat_inv_polygons) > 0, nrow(inv_polygons_unique) > 0, nrow(inv_polygons_multiple) > 0)],
+          colors = c("#4db3ff", "#1c5c99", "#ffeb33", "#e8b600", "#fc8700", "grey", "#ff0000", "#4d0c01")[c(nrow(native_polygons_unique) > 0, nrow(native_polygons_multiple) > 0, nrow(crypt_polygons_unique) > 0, nrow(crypt_polygons_multiple) > 0, nrow(inv_crypt_polygons) > 0, nrow(nat_inv_crypt_polygons) > 0, nrow(inv_polygons_unique) > 0, nrow(inv_polygons_multiple) > 0)],
+          labels = c("Native", "Native multiple sp.", "Cryptogenic", "Cryptogenic multiple sp.","Introduced or Cryptogenic", "Native, Introduced or Cryptogenic", "Introduced", "Introduced multiple sp.")[c(nrow(native_polygons_unique) > 0, nrow(native_polygons_multiple) > 0, nrow(crypt_polygons_unique) > 0, nrow(crypt_polygons_multiple) > 0, nrow(inv_crypt_polygons) > 0, nrow(nat_inv_crypt_polygons) > 0, nrow(inv_polygons_unique) > 0, nrow(inv_polygons_multiple) > 0)],
           title = NULL
         )
     })
