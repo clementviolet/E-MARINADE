@@ -1,0 +1,25 @@
+body {
+  font-family: Verdana;  
+}
+
+
+/* Increase top header ribbon height in shinydashboard */
+.main-header .navbar {
+  height: 70px;
+  min-height: 70px;
+}
+
+.main-header .logo {
+  height: 70px;
+  line-height: 70px;
+}
+
+.main-header .navbar .sidebar-toggle {
+  height: 70px;
+  padding-top: 22px;
+}
+
+.main-header .navbar-custom-menu > .navbar-nav > li > a {
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
