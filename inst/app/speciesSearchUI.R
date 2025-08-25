@@ -29,14 +29,17 @@ speciesSearchUI <- function(id) {
     ),
     
     # Always render the text input field (server will handle logic)
-    shiny::fluidRow(
-      shiny::column(
-        width = 12,
-        shiny::textAreaInput(
-          inputId = ns("textSp"),
-          label = "Species or AphiaIDs (one per line)",
-          value = "Caulerpa taxifolia\n417798",
-          width = "50%", rows = 6
+    shiny::conditionalPanel(
+      condition = sprintf("input['%s'] == 'text'", ns("inputMode")),
+      shiny::fluidRow(
+        shiny::column(
+          width = 12,
+          shiny::textAreaInput(
+            inputId = ns("textSp"),
+            label = "Species or AphiaIDs (one per line)",
+            value = "Caulerpa taxifolia\n417798",
+            width = "50%", rows = 6
+          )
         )
       )
     ),
