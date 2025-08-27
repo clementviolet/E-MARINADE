@@ -1,20 +1,18 @@
-# Library
-# library(tidyverse)
-# library(shiny)
-# library(shinydashboard)
-# library(shinycssloaders)
-# library(ComplexUpset)
-# library(leaflet)
-# library(DT)
-# library(dm)
-# library(sf)
-
-#' Title
+#' Launch the E-Marinade Shiny app
+#'
+#' Starts the interactive **eMarinade** application bundled with the package.
+#' The function loads prebuilt data objects and then runs the Shiny UI/server.
 #' 
 #' @importFrom dplyr filter
-#' @returns NULL
-#' @export
+#' @return A \code{shiny.appobj} (the running app). The function is usually called for its side effect of launching the app.
+#' @seealso
+#' Dataset documentation: [taxo_tbl], [inv_tbl], [origin_tbl], [meow_eco].
 #'
+#' @examples
+#' \dontrun{
+#'   emarinade::shiny_emarinade()
+#' }
+#' @export
 shiny_emarinade <- function(){
   
   suppressMessages({
