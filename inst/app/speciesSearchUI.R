@@ -34,9 +34,18 @@ speciesSearchUI <- function(id) {
       shiny::fluidRow(
         shiny::column(
           width = 12,
+          shiny::selectInput(
+            inputId = ns("selectTaxoLvl"),
+            "Select taxonomic level of interest. Note: If you have selected a taxonomic rank higher than Species, the search by AphiaID will not be available.",
+            c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"),
+            selected = "Species"
+          )
+        ),
+        shiny::column(
+          width = 12,
           shiny::textAreaInput(
             inputId = ns("textSp"),
-            label = "Species or AphiaIDs (one per line)",
+            label = "Species or AphiaIDs (one per line).",
             value = "Caulerpa taxifolia\n417798",
             width = "50%", rows = 6
           )

@@ -15,28 +15,88 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
         input$textSp != default_text
     })
     
+    
+    taxo_lvl <- shiny::reactive({
+      shiny::req(input$selectTaxoLvl)
+      
+      input$selectTaxoLvl
+    })
+    
     sp_input <- shiny::reactive({
       shiny::req(input$textSp)
       lines <- unlist(strsplit(input$textSp, "\n"))
       trimmed <- stringr::str_trim(lines)
       trimmed <- trimmed[trimmed != ""]
-      is_aphia <- stringr::str_detect(trimmed, "^\\d+$")
+      
+      if(taxo_lvl() == "Species"){
+        
+        is_aphia <- stringr::str_detect(trimmed, "^\\d+$")
+        
+      } else{
+        
+        is_aphia <- FALSE
+        
+      }
+      
       list(
         species = trimmed[!is_aphia],
         aphia = trimmed[is_aphia]
       )
+      
     })
     
     matched_sp <- shiny::reactive({
+      
       shiny::req(user_has_typed())
-      sp <- sp_input()$species
-      dm_data$taxo_tbl$Species[dm_data$taxo_tbl$Species %in% sp]
+      taxon <- sp_input()$species
+      
+      if(taxo_lvl() == "Kingdom"){
+        
+        dm_data$taxo_tbl$Species[dm_data$taxo_tbl$Kingdom %in% taxon]
+        
+      } else if(taxo_lvl() == "Phylum"){
+        
+        dm_data$taxo_tbl$Species[dm_data$taxo_tbl$Phylum %in% taxon]
+        
+      } else if(taxo_lvl() == "Class"){
+        
+        dm_data$taxo_tbl$Species[dm_data$taxo_tbl$Class %in% taxon]
+        
+      } else if(taxo_lvl() == "Order"){
+        
+        dm_data$taxo_tbl$Species[dm_data$taxo_tbl$Order %in% taxon]
+        
+      } else if(taxo_lvl() == "Family"){
+        
+        dm_data$taxo_tbl$Species[dm_data$taxo_tbl$Family %in% taxon]
+        
+      } else if(taxo_lvl() == "Genus"){
+        
+        dm_data$taxo_tbl$Species[dm_data$taxo_tbl$Genus %in% taxon]
+        
+      } else{
+        
+        dm_data$taxo_tbl$Species[dm_data$taxo_tbl$Species %in% taxon]
+        
+      }
     })
     
     matched_aphia <- shiny::reactive({
+      
       shiny::req(user_has_typed())
-      aphia <- as.numeric(sp_input()$aphia)
-      dm_data$taxo_tbl$AphiaID[dm_data$taxo_tbl$AphiaID %in% aphia]
+      
+      if(taxo_lvl() == "Species"){
+        
+        aphia <- as.numeric(sp_input()$aphia)
+        
+        dm_data$taxo_tbl$AphiaID[dm_data$taxo_tbl$AphiaID %in% aphia]
+        
+      } else{
+        
+        NULL
+        
+      }
+      
     })
     
     # output$textSPOut2 <- shiny::renderPrint({
@@ -62,11 +122,11 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
       
       if (length(valid) > 0) {
         shinydashboard::box(
-          title = "✅ Success",
+          title = "✅ Success - Recognised taxon/taxa",
           status = "success",
           solidHeader = TRUE,
           width = 12,
-          paste("Recognised species:", paste(valid, collapse = ", "))
+          paste(valid, collapse = ", ")
         )
       }
     })
@@ -81,11 +141,11 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
       
       if (length(valid) > 0) {
         shinydashboard::box(
-          title = "✅ Success",
+          title = "✅ Success - Recognised AphiaID(s)",
           status = "success",
           solidHeader = TRUE,
           width = 12,
-          paste("Recognised AphiaIDs:", paste(valid, collapse = ", "))
+          paste(valid, collapse = ", ")
         )
       }
     })
@@ -96,16 +156,49 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
       
       if (!user_has_typed()) return(NULL)
       
+      
       invalid <- sp_input()$species[!sp_input()$species %in% dm_data$taxo_tbl$Species]
       
+      taxon <- sp_input()$species
+      
+      if(taxo_lvl() == "Kingdom"){
+        
+        invalid <- taxon[!taxon %in% dm_data$taxo_tbl$Kingdom]
+        
+      } else if(taxo_lvl() == "Phylum"){
+        
+        invalid <- taxon[!taxon %in% dm_data$taxo_tbl$Phylum]
+        
+      } else if(taxo_lvl() == "Class"){
+        
+        invalid <- taxon[!taxon %in% dm_data$taxo_tbl$Class]
+        
+      } else if(taxo_lvl() == "Order"){
+        
+        invalid <- taxon[!taxon %in% dm_data$taxo_tbl$Order]
+        
+      } else if(taxo_lvl() == "Family"){
+        
+        invalid <- taxon[!taxon %in% dm_data$taxo_tbl$Family]
+        
+      } else if(taxo_lvl() == "Genus"){
+        
+        invalid <- taxon[!taxon %in% dm_data$taxo_tbl$Genus]
+        
+      } else{
+        
+        invalid <- taxon[!taxon %in% dm_data$taxo_tbl$Species]
+        
+      }
+      
       # if (TRUE) {
-      if (length(invalid) > 0) {
+      if (length(unique(invalid)) > 0) {
         shinydashboard::box(
-          title = "⚠️ Warning",
+          title = "⚠️ Warning - Unrecognised taxon/taxa",
           status = "warning",
           solidHeader = TRUE,
           width = 12,
-          paste("Unrecognised species:", paste(invalid, collapse = ", "))
+          paste(invalid, collapse = ", ")
         )
       }
     })
@@ -120,11 +213,11 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
 
       if (length(invalid) > 0) {
         shinydashboard::box(
-          title = "⚠️ Warning",
+          title = "⚠️ Warning - Unrecognised AphiaIDs",
           status = "warning",
           solidHeader = TRUE,
           width = 12,
-          paste("Unrecognised AphiaIDs:", paste(invalid, collapse = ", "))
+          paste(invalid, collapse = ", ")
         )
       }
     })
@@ -132,12 +225,60 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
     matched_species_ids <- reactive({
       if (input_mode() == "text") {
         if (!user_has_typed()) return(NULL)
-        sp <- sp_input()$species
+        
+        taxon <- sp_input()$species
         aphia <- as.numeric(sp_input()$aphia)
-        dm_data$taxo_tbl %>%
-          dplyr::filter(Species %in% sp | AphiaID %in% aphia) %>%
-          dplyr::pull(SpeciesID) %>%
-          unique()
+        
+        if(taxo_lvl() == "Kingdom"){
+          
+          dm_data$taxo_tbl %>%
+            dplyr::filter(Kingdom %in% taxon) %>%
+            dplyr::pull(SpeciesID) %>%
+            unique()
+          
+        } else if(taxo_lvl() == "Phylum"){
+          
+          dm_data$taxo_tbl %>%
+            dplyr::filter(Phylum %in% taxon) %>%
+            dplyr::pull(SpeciesID) %>%
+            unique()
+          
+        } else if(taxo_lvl() == "Class"){
+          
+          dm_data$taxo_tbl %>%
+            dplyr::filter(Class %in% taxon) %>%
+            dplyr::pull(SpeciesID) %>%
+            unique()
+          
+        } else if(taxo_lvl() == "Order"){
+          
+          dm_data$taxo_tbl %>%
+            dplyr::filter(Order %in% taxon) %>%
+            dplyr::pull(SpeciesID) %>%
+            unique()
+          
+        } else if(taxo_lvl() == "Family"){
+          
+          dm_data$taxo_tbl %>%
+            dplyr::filter(Family %in% taxon) %>%
+            dplyr::pull(SpeciesID) %>%
+            unique()
+          
+        } else if(taxo_lvl() == "Genus"){
+          
+          dm_data$taxo_tbl %>%
+            dplyr::filter(Genus %in% taxon) %>%
+            dplyr::pull(SpeciesID) %>%
+            unique()
+          
+        } else{
+          
+          dm_data$taxo_tbl %>%
+            dplyr::filter(Species %in% taxon | AphiaID %in% aphia) %>%
+            dplyr::pull(SpeciesID) %>%
+            unique()
+          
+        }
       } else {
         req(input$speciesTaxoTable_rows_selected)
         unique(dm_data$taxo_tbl[input$speciesTaxoTable_rows_selected, "SpeciesID", drop = TRUE])
@@ -176,7 +317,7 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
       
       shinyWidgets::pickerInput(
         inputId = ns("SpeciesListPicker"),
-        label = "Select Species to Map below", 
+        label = "Refine species to plot and show in the tables", 
         choices = stats::setNames(choices$SpeciesID, choices$Species),
         multiple = TRUE,
         options = shinyWidgets::pickerOptions(container = "body", 
@@ -444,9 +585,15 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
     
     # DataTables
     output$invDataTable <- DT::renderDT({
-      req(matched_species_ids())
+      req(input$SpeciesListPicker)
+      
+      speciesID <- dm_data$taxo_tbl %>%
+        dplyr::filter(SpeciesID %in% as.numeric(input$SpeciesListPicker)) %>%
+        dplyr::pull(SpeciesID)
+      
+      
       inv_data <- dm_data$inv_tbl %>%
-        dplyr::filter(SpeciesID %in% matched_species_ids()) %>%
+        dplyr::filter(SpeciesID %in% speciesID) %>%
         dplyr::left_join(meow_eco, by = c("Ecoregion_Code" = "ECO_CODE_X")) %>%
         dplyr::left_join(dm_data$taxo_tbl, by = "SpeciesID") %>%
         dplyr::select(Kingdom:Species, AphiaID:ncbiID, Year:MSFD_subregion,
@@ -459,9 +606,15 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
     }, server = FALSE)
     
     output$originDataTable <- DT::renderDT({
-      req(matched_species_ids())
+      req(input$SpeciesListPicker)
+      
+      speciesID <- dm_data$taxo_tbl %>%
+        dplyr::filter(SpeciesID %in% as.numeric(input$SpeciesListPicker)) %>%
+        dplyr::pull(SpeciesID)
+      
+      
       origin_data <- dm_data$origin_tbl %>%
-        dplyr::filter(SpeciesID %in% matched_species_ids()) %>%
+        dplyr::filter(SpeciesID %in% speciesID) %>%
         dplyr::left_join(meow_eco, by = c("ECO_CODE_X" = "ECO_CODE_X")) %>%
         dplyr::left_join(dm_data$taxo_tbl, by = "SpeciesID") %>%
         dplyr::select(Kingdom:Species, AphiaID:ncbiID, REALM, RLM_CODE,
