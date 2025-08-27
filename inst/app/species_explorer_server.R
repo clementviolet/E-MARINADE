@@ -328,15 +328,7 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
     })
     
     selected_species_ids <- reactive({
-      if (input_mode() == "text") {
-        # In text mode, use what the user picked from the pickerInput
-        
-        input$SpeciesListPicker
-        
-      } else {
-        # In table mode, use matched_species_ids()
-        matched_species_ids()
-      }
+      input$SpeciesListPicker
     })
     
     output$speciesCombinedMap <- leaflet::renderLeaflet({

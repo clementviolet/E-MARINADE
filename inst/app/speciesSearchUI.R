@@ -79,25 +79,6 @@ speciesSearchUI <- function(id) {
           )
         )
       ),
-      shiny::fluidRow(
-        shiny::column(
-          width = 12,
-          shiny::br(), shiny::br(),
-          shiny::div(
-            style = "display: flex; align-items: center; justify-content: flex-start; gap: 20px; margin-bottom: 20px;",
-            shiny::div(
-              style = "font-size: 16px; color: #444;",
-              shiny::tags$span("Selected Species: "),
-              shiny::htmlOutput(ns("selectedSpecies"), inline = TRUE)
-            ),
-            shiny::actionButton(
-              ns("clearSelection"), "Clear Selection",
-              class = "btn btn-secondary",
-              style = "padding: 6px 15px; font-size: 14px;"
-            )
-          )
-        )
-      )
     ),
     
     shiny::fluidRow(
