@@ -18,8 +18,7 @@ knitr::opts_chunk$set(
 
 # Introduction,
 
-This vignette explains how to use the Shiny application to explore *Non-Indigenous Species* (*NIS*) in European seas. This vignette will present you how to launch the app; use the *European Introduction Map* to inspect regional *NIS* richness and list species; Use the *Species Explorer* to explore *introduced* and *native*
-ranges of particular species and finaly export results
+This vignette explains how to use the Shiny application to explore *Non-Indigenous Species* (*NIS*) in European seas. This vignette will present you how to launch the app; use the *European Introduction Map* to inspect regional *NIS* richness and list species; Use the *Species Explorer* to explore *introduced* and *native* ranges of particular species and finaly export results
 
 # Quick Start
 
@@ -88,6 +87,10 @@ Once species are selected, the app displays a single interactive map that overla
 Below the maps, two range tables are provided. The *Introduced Range table* lists all regions where the selected species are introduced or cryptogenic, while the *Native Range table* lists their native regions. These tables include powerful functions such as global search, optional column filters, data export in `Copy` (clipboard), `CSV`, `Excel` formats, and scroll bars to handle wide or long datasets. Note that if no data are available for a given category (for example, when no native polygons are known for a species), the corresponding panel remains empty.  
 
 ![](figures/explorer_table.png){width="100%"}
+
+# Exporting Results
+
+All tables in the application provide `Copy` (copy to clipboard), `CSV`, and `Excel` export buttons, making it easy to save or share the data according to your needs. 
 
 # Use Cases
 

@@ -12,7 +12,7 @@ invMapUI <- function() {
         width = 12,
         shiny::tags$h2("European Introduction Map"),
         shiny::tags$p(
-          "Use the map below to explore non-indigenous species (NIS) present in each Eureopan ecoregion. ",
+          "Use the map below to explore marine non-indigenous species (NIS) present in each European ecoregion. ",
           "Click on one or multiple polygons to select ecoregions and view the corresponding NIS in the table. ",
           "You can filter the table using the column headers, export the data using the buttons above the table, ",
           "and reset your selection at any time by clicking the ",

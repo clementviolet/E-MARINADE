@@ -14,7 +14,7 @@
 
 This tool provides access to harmonized datasets and visualization tools that allow users to:
 
-- 🗺️ Explore where marine NIS have been introduced, by clicking on ecoregions of the European seas.
+- 🗺️ Explore where marine NIS have been introduced, by clicking on European Seas ecoregions.
 
 - 🌍 Visualize their native ranges, to better understand species origins and biogeographic pathways.
 
