@@ -2,13 +2,11 @@
 % Please edit documentation in R/emarinade-package.R
 \docType{package}
 \name{emarinade}
-\alias{emarinade-package}
 \alias{emarinade}
+\alias{emarinade-package}
 \title{emarinade: Explore Marine Non-Indigenous Species Data}
 \description{
 The \strong{emarinade} package provides:
-}
-\details{
 \itemize{
 \item Curated datasets: \code{taxo_tbl}, \code{inv_tbl}, \code{origin_tbl}, \code{meow}
 \item A Shiny app for species search, taxonomy exploration, and mapping
@@ -25,20 +23,28 @@ The \strong{emarinade} package provides:
 }
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://clementviolet.github.io/E-MARINADE/}
+}
+
+}
 \author{
-\strong{Maintainer}: Clément Violet \email{clement.violet@ifremer.fr} (\href{https://orcid.org/0000-0001-5000-0004}{ORCID})
+\strong{Maintainer}: Clément Violet \email{clement.violet@ifremer.fr} (\href{https://orcid.org/0000-0001-6217-5891}{ORCID})
 
 Authors:
 \itemize{
-  \item Mathieu Chevalier (\href{https://orcid.org/0000-0001-5000-0001}{ORCID})
-  \item Amelia Curd (\href{https://orcid.org/0000-0001-5000-0001}{ORCID})
-  \item Frédérique Viard (\href{https://orcid.org/0000-0001-5000-0001}{ORCID})
+  \item Mathieu Chevalier (\href{https://orcid.org/0000-0002-1170-5343}{ORCID})
+  \item Amelia Curd (\href{https://orcid.org/0000-0003-3260-7192}{ORCID})
+  \item Frédérique Viard (\href{https://orcid.org/0000-0001-5603-9527}{ORCID})
 }
 
 Other contributors:
 \itemize{
-  \item Mathisse Meyneng (\href{https://orcid.org/0000-0001-5000-0004}{ORCID}) (Logo designer) [contributor]
+  \item Mathisse Meyneng (\href{https://orcid.org/0009-0000-7442-4613}{ORCID}) (Logo designer) [contributor]
 }
 
 }
+\keyword{internal}
 \keyword{package}

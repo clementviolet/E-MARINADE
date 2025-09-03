@@ -1,7 +1,12 @@
+## usethis namespace: start
+#' @importFrom dplyr filter
+## usethis namespace: end
+NULL
+
+
 #' emarinade: Explore Marine Non-Indigenous Species Data
 #'
 #' The **emarinade** package provides:
-#' 
 #' - Curated datasets: `taxo_tbl`, `inv_tbl`, `origin_tbl`, `meow`
 #' - A Shiny app for species search, taxonomy exploration, and mapping
 #' - Functions for working with invasion and native range data
@@ -12,12 +17,8 @@
 #' - `origin_tbl`: Native range records
 #' - `meow`: Marine ecoregions polygons
 #'
-#' @docType package
 #' @name emarinade
+#' @keywords internal
+#' @aliases emarinade-package emarinade
 #' @keywords package
 "_PACKAGE"
-
-## usethis namespace: start
-#' @importFrom dplyr filter
-## usethis namespace: end
-NULL
