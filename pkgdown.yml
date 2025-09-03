@@ -3,7 +3,7 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   ShinyE-Marinade: ShinyE-Marinade.html
-last_built: 2025-08-27T16:36Z
+last_built: 2025-09-03T13:49Z
 urls:
   reference: https://clementviolet.github.io/E-MARINADE/reference
   article: https://clementviolet.github.io/E-MARINADE/articles
