@@ -5,11 +5,11 @@
 server <- function(input, output, session){
   
   source(
-    system.file("app/server_inv_map.R", package = "emarinade"),
+    system.file("app/server_inv_map.R", package = "anise"),
     local = TRUE
   )
   source(
-    system.file("app/server_species_explorer.R", package = "emarinade"),
+    system.file("app/server_species_explorer.R", package = "anise"),
     local = TRUE
   )
   

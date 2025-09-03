@@ -17,4 +17,4 @@ BuildType: Package
 PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch --with-keep.source
 
-ProjectName: E-MARINADE
+ProjectName: ANIS-E

@@ -1,16 +1,16 @@
 <table style="width:100%; vertical-align: middle;">
   <tr>
     <td style="width:190px;">
-      <img src="wwww/Logo_EMARINADE.png" width="186">
+      <img src="wwww/Logo_ANIS-E.svg" width="186">
     </td>
     <td>
-      <h1 style="margin-bottom: 0;">Welcome to E-MARINADE</h1>
+      <h1 style="margin-bottom: 0;">Welcome to ANIS-E</h1>
     </td>
   </tr>
 </table>
 <br>
 
-***E-MARINADE*** (***European water MARINe Alien Data Explorer***) is an interactive *R-Shiny* application designed to help you explore the spread and origin of marine *Non-Indigenous Species* (*NIS*) across European waters.
+***ANIS-E*** (***Atlas of marine Non-Indigenous Species in Europe***) is an interactive *R-Shiny* application designed to help you explore the spread and origin of marine *Non-Indigenous Species* (*NIS*) across European waters.
 
 This tool provides access to harmonized datasets and visualization tools that allow users to:
 

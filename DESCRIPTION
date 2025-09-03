@@ -1,5 +1,5 @@
-Package: emarinade
-Title: European MARIne Alien Data Explorer
+Package: anise
+Title: ANIS-E: Atlas of marine Non-Indigenous Species in Europe
 Version: 0.0.1
 Authors@R: c(
     person("Clément", "Violet", , "clement.violet@ifremer.fr", role = c("aut", "cre"),
@@ -42,4 +42,4 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-URL: https://clementviolet.github.io/E-MARINADE/
+URL: https://clementviolet.github.io/ANIS-E/

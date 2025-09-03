@@ -1,6 +1,6 @@
-#' Launch the E-Marinade Shiny app
+#' Launch the ANIS-E Shiny app
 #'
-#' Starts the interactive **eMarinade** application bundled with the package.
+#' Starts the interactive **ANIS-E** application bundled with the package.
 #' The function loads prebuilt data objects and then runs the Shiny UI/server.
 #' 
 #' @importFrom dplyr filter
@@ -10,10 +10,10 @@
 #'
 #' @examples
 #' \dontrun{
-#'   emarinade::shiny_emarinade()
+#'   anise::shiny_anise()
 #' }
 #' @export
-shiny_emarinade <- function(){
+shiny_anise <- function(){
   
   suppressMessages({
 
@@ -22,7 +22,7 @@ shiny_emarinade <- function(){
   })
 
   data_env <- new.env()
-  data_path <- system.file("app/data/shiny_app_data.rda", package = "emarinade")
+  data_path <- system.file("app/data/shiny_app_data.rda", package = "anise")
   load(data_path, envir = data_env)
 
   dm_data <- dm::dm_get_tables(data_env$dm_data)
@@ -53,15 +53,15 @@ shiny_emarinade <- function(){
   # Shiny ressources
   # There is a bug in the way shiny expose the files in the www folder. 
   # Normally it is automatic
-  shiny::addResourcePath("wwww", system.file("www", package = "emarinade"))
+  shiny::addResourcePath("wwww", system.file("www", package = "anise"))
 
   source(
-    system.file("app/main_ui.R", package = "emarinade"),
+    system.file("app/main_ui.R", package = "anise"),
     local = TRUE
   )
   
   source(
-    system.file("app/main_server.R", package = "emarinade"),
+    system.file("app/main_server.R", package = "anise"),
     local = TRUE
   )
 

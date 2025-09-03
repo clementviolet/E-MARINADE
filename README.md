@@ -2,12 +2,12 @@
 
 ## Installation
 
-Use `devtools::install_github("clementviolet/E-MARINADE")` to install this package.
+Use `devtools::install_github("clementviolet/ANIS-E")` to install this package.
 
 ## Run the Shiny App
 
 ```         
-library(emarinade)
+library(anise)
 
-shiny_emarinade()
+shiny_anise()
 ```

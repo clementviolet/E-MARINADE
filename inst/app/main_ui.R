@@ -3,22 +3,22 @@
 ###########
 
 source(
-  system.file("app/ui_styles.R", package = "emarinade"),
+  system.file("app/ui_styles.R", package = "anise"),
   local = TRUE
 )
 
 source(
-  system.file("app/ui_home.R", package = "emarinade"),
+  system.file("app/ui_home.R", package = "anise"),
   local = TRUE
 )
 
 source(
-  system.file("app/ui_inv_map.R", package = "emarinade"),
+  system.file("app/ui_inv_map.R", package = "anise"),
   local = TRUE
 )
 
 source(
-  system.file("app/ui_species_explorer.R", package = "emarinade"),
+  system.file("app/ui_species_explorer.R", package = "anise"),
   local = TRUE
 )
 
@@ -30,7 +30,7 @@ sidebar <- function(){
       shiny::HTML(
         paste0(
           "<br><br>",
-          "<img style = 'display: block; margin-left: auto; margin-right: auto;' src='wwww/Logo_EMARINADE.png' width = '186'>",
+          "<img style = 'display: block; margin-left: auto; margin-right: auto;' src='wwww/Logo_ANIS-E.svg' width = '186'>",
           "<br>"
         )
       ),
@@ -70,11 +70,11 @@ body <- function(){
 ui <- shinydashboard::dashboardPage(
   skin = "blue",
   header = shinydashboard::dashboardHeader(
-    title = "E-MARINADE",
+    title = "ANIS-E",
     #   shiny::tagList(
     #   shiny::tags$div(
     #     style = "line-height: 1.2;",
-    #     shiny::tags$strong("E-MARINADE"),
+    #     shiny::tags$strong("ANIS-E"),
     #     shiny::tags$div(
     #       "Mapping the Origins and Spread of Marine Non-Indigenous Species in European Waters",
     #       style = "font-size: 12px; color: #ccc;"
