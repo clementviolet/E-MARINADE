@@ -11,7 +11,12 @@ speciesSearchUI <- function(id) {
     shiny::fluidRow(
       shiny::column(
         width = 12,
-        shiny::tags$p("Click on a row in the taxonomic table or use the input field to filter by species/AphiaIDs."),
+        shiny::tags$p(
+          "Click on a row in the taxonomic table or use the input field to filter by species/AphiaIDs.",
+          shiny::tags$sup(
+            shiny::tags$a(href = "#note-1", "1")
+            )
+          ),
         shiny::tags$p("In the tables below, you will be able to access and download the information about the introduced and native range.")
       )
     ),
@@ -121,6 +126,17 @@ speciesSearchUI <- function(id) {
                             color = "blue"
                           )
           )
+        )
+      )
+    ),
+    shiny::fluidRow(
+      shiny::column(
+        width = 12,
+        shiny::tags$hr(),
+        shiny::tags$div(
+          id = "note-1",
+          style = "font-size: 12px; color: grey;",
+          shiny::tags$sup("1"), "Searching by AphiaID is currently supported only at the species level. Future versions will extend this feature to all taxonomic levels."
         )
       )
     )

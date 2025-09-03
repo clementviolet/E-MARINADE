@@ -18,7 +18,7 @@ source(
 )
 
 source(
-  system.file("app/speciesSearchUI.R", package = "emarinade"),
+  system.file("app/ui_species_explorer.R", package = "emarinade"),
   local = TRUE
 )
 
