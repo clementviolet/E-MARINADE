@@ -86,6 +86,12 @@ ui <- shinydashboard::dashboardPage(
   sidebar = sidebar(),
   body = shinydashboard::dashboardBody(
     globalStyles(),
+    shiny::tags$head(
+      shiny::tags$link(rel = "shortcut icon", href = "wwww/favicon.ico"),
+      shiny::tags$link(rel = "apple-touch-icon", sizes = "180x180", href = "wwww/apple-touch-icon.png"),
+      shiny::tags$link(rel = "icon", type = "image/png", sizes = "32x32", href = "wwww/favicon-32x32.png"),
+      shiny::tags$link(rel = "icon", type = "image/png", sizes = "16x16", href = "wwww/favicon-16x16.png")
+    ),
     shinydashboard::tabItems(
       homeTabUI(),
       invMapUI(),
