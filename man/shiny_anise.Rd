@@ -15,7 +15,7 @@ The function loads prebuilt data objects and then runs the Shiny UI/server.
 }
 \examples{
 \dontrun{
-  anise::shiny_anise()
+  shiny_anise()
 }
 }
 \seealso{

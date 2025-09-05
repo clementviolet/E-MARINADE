@@ -10,7 +10,7 @@
 #'
 #' @examples
 #' \dontrun{
-#'   anise::shiny_anise()
+#'   shiny_anise()
 #' }
 #' @export
 shiny_anise <- function(){
