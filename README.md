@@ -20,7 +20,7 @@ You can install the development version of anise from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("clementviolet/ANIS-E")
+devtools::install_github("xx/xx")
 ```
 
 ## Example
