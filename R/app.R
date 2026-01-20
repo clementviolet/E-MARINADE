@@ -25,7 +25,8 @@ shiny_anise <- function(){
   data_path <- system.file("app/data/shiny_app_data.rda", package = "anise")
   load(data_path, envir = data_env)
 
-  dm_data <- dm::dm_get_tables(data_env$dm_data)
+  dm_data <- dm::dm_get_tables(data_env$dm_data) %>%
+    dm::as_dm()
 
   meow_eco <- data_env$meow_eco
   meow_prov <- data_env$meow_prov
@@ -39,14 +40,28 @@ shiny_anise <- function(){
   
   eu_nativeID <- dm_data$origin_tbl %>% 
     dplyr::filter(ECO_CODE_X %in% europe_ecoregions) %>% 
-    dplyr::pull(SpeciesID) %>% 
+    dplyr::pull(taxonID) %>% 
     unique()
   
-  dm_data$inv_tbl <- dm_data$inv_tbl %>%
+  dm_data <- dm_data %>%
+    dm::dm_zoom_to(inv_tbl) %>%
     dplyr::mutate(
-      EU_native = dplyr::if_else(SpeciesID %in% eu_nativeID, TRUE, FALSE),
-      .after = "Country"
-    )
+      EU_native = dplyr::if_else(taxonID %in% eu_nativeID, TRUE, FALSE),
+      .after = "country"
+    ) %>%
+    dm::dm_update_zoomed()
+  
+  
+  # Provide taxonomical identifiers
+  
+  taxo_identifiers <- dm_data$taxo_identifiers %>%
+    tidyr::pivot_wider(
+      names_from = subject, values_from = identifier
+    ) %>%
+    dplyr::select(-title, -identifierID) %>%
+    dplyr::group_by(taxonID) %>%
+    dplyr::summarise(dplyr::across(dplyr::everything(), ~sum(.x, na.rm = TRUE))) %>%
+    dplyr::mutate(dplyr::across(dplyr::everything(), ~dplyr::na_if(.x, 0)))
   
   # Shiny App per say
 

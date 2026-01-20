@@ -13,12 +13,13 @@ suppressWarnings({
 invasion_eu_map <- function(year = 2023){
   
   nb_inv_ecoregion <- dm_data$inv_tbl %>%
-    filter(is.na(Year) | Year <= year) %>%
-    dplyr::distinct(SpeciesID, Ecoregion_Code, .keep_all = TRUE) %>%
-    dplyr::count(Ecoregion_Code)
+    filter(is.na(year) | year <= year) %>%
+    dplyr::filter(!is.na(ECO_CODE_X)) %>%
+    dplyr::distinct(taxonID, ECO_CODE_X, .keep_all = TRUE) %>%
+    dplyr::count(ECO_CODE_X)
   
   data_plot <- meow_europe %>%
-    dplyr::left_join(nb_inv_ecoregion, by = c("ECO_CODE_X" = "Ecoregion_Code")) %>%
+    dplyr::left_join(nb_inv_ecoregion, by = c("ECO_CODE_X")) %>%
     tidyr::replace_na(list(n = 0)) %>%
     filter(n > 0)
   
@@ -66,35 +67,43 @@ invasion_eu_table <- function(ecoregion) {
     if (length(ecoregion()) == 0) {
       
       data <- dm_data$taxo_tbl %>% 
-        dplyr::left_join(dm_data$inv_tbl, by = "SpeciesID") %>% 
+        dplyr::left_join(dm_data$inv_tbl, by = "taxonID") %>% 
         dplyr::left_join(
-          meow_eco, c("Ecoregion_Code" = "ECO_CODE_X"), 
+          meow_eco, by ="ECO_CODE_X", 
           relationship = "many-to-many"
+        ) %>%
+        dplyr::left_join(
+          taxo_identifiers, by = "taxonID"
         ) %>%
         dplyr::slice(0) # Make an empty table
       
     } else {
       
       data <- dm_data$taxo_tbl %>% 
-        dplyr::left_join(dm_data$inv_tbl, by = "SpeciesID") %>% 
-        filter(Ecoregion_Code %in% ecoregion()) %>%
-        dplyr::arrange(Ecoregion_Code) %>%
+        dplyr::left_join(dm_data$inv_tbl, by = "taxonID") %>%
         dplyr::left_join(
-          meow_eco, c("Ecoregion_Code" = "ECO_CODE_X"), 
+          taxo_identifiers, by = "taxonID"
+        ) %>%
+        filter(ECO_CODE_X %in% ecoregion()) %>%
+        dplyr::arrange(ECO_CODE_X) %>%
+        dplyr::left_join(
+          meow_eco, by = "ECO_CODE_X", 
           relationship = "many-to-many"
         ) %>%
-        dplyr::distinct(Species, Ecoregion_Code, .keep_all = TRUE)
+        dplyr::distinct(acceptedNameUsage, ECO_CODE_X, .keep_all = TRUE)
     }
     
     DT::datatable(
-      data = data %>%  dplyr::select(
-        Kingdom:Species, AphiaID:ncbiID, 
-        Year:MSFD_subregion, 
+      data = data %>% 
+        dplyr::select(
+        kingdom:acceptedNameUsage, `WoRMS AphiaID`:`AlgaeBAse Taxonomic ID`, 
+        year:occurrenceRemarks, 
         REALM, RLM_CODE, 
         PROVINCE, PROV_CODE, 
-        ECOREGION, ECO_CODE = Ecoregion_Code,
-        Source, DB
-      ),
+        ECOREGION, ECO_CODE_X,
+        associatedReferences, references
+      ) %>%
+      dplyr::rename_with(~stringr::str_to_sentence(.x))  ,
       filter = "top", extensions = c("Buttons", "Scroller"), 
       options = list(
         dom = "Bfrtip", buttons = c("copy", "csv", "excel"),
