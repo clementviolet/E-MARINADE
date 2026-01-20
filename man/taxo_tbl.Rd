@@ -5,20 +5,13 @@
 \alias{taxo_tbl}
 \title{Taxonomic Information data}
 \format{
-\subsection{\code{inv_tbl}}{
+\subsection{\code{taxo_tbl}}{
 
-A \code{tibble} data frame with 4,834 rows and 18 columns:
+A \code{tibble} data frame with  rows and 18 columns:
 \describe{
-\item{SpeciesID}{Identifier linking a species to a valid taxonomic}
-\item{AphiaID}{Identifier linking a species to a valid taxonomic}
-\item{tsnID}{ITIS identifier.}
-\item{boldID}{Barcode of Life identifier.}
-\item{eolID}{Encyclopedia of Life identifier.}
-\item{fishbaseID}{Fishbase identifier.}
-\item{algaebaseID}{Algaebase identifier.}
-\item{iucnID}{IUCN Red List identifier.}
-\item{ncbiID}{NCBI identifier.}
-\item{Kingdom, Phylum, Class, Order, Family, Genus, Species}{Taxonomic rank.}#'
+\item{taxonID}{An identifier for the set of taxon information. Identifier specific to the data set.}
+\item{Kingdom, Phylum, Class, Order, Family, Genus}{The full scientific name in which the taxon is classified}
+\item{acceeptedNameUsage}{The full name, with authorship and date information if known, of the currently valid (zoological) or accepted (botanical) taxon.}
 }
 }
 }

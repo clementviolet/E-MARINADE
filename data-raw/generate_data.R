@@ -7,6 +7,7 @@ sf::sf_use_s2(FALSE)
 # Loading up to date tables
 inv_tbl <- read_csv("../ENI_Listing/EML/data_objects/inv_tbl.csv")
 taxo_tbl <- read_csv("../ENI_Listing/EML/data_objects/taxo_tbl.csv")
+taxo_id_tbl <- read_csv("../ENI_Listing/EML/data_objects/taxo_identifiers_tbl.csv")
 meow_tbl <- read_csv("../ENI_Listing/EML/data_objects/meow_tbl.csv")
 origin_tbl <- read_csv("../ENI_Listing/EML/data_objects/origin_tbl.csv")
 
@@ -49,11 +50,6 @@ meow_rlm <- meow_eco %>%
 
 save(dm_data, meow_eco, meow_prov, meow_rlm, file = "inst/app/data/shiny_app_data.rda")
 
-# Cleanning some names
-
-meow <- meow_eco %>%
-  select(-ALT_CODE) # Remove this useless column
-
 # Exporting the datasets
 
-usethis::use_data(inv_tbl, taxo_tbl, origin_tbl, meow, overwrite = TRUE)
+usethis::use_data(inv_tbl, taxo_tbl, taxo_id_tbl, origin_tbl, meow_eco, overwrite = TRUE)

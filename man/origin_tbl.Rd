@@ -5,15 +5,15 @@
 \alias{origin_tbl}
 \title{Native range records}
 \format{
-\subsection{\code{inv_tbl}}{
+\subsection{\code{origin_tbl}}{
 
-A \code{tibble} data frame with 4,834 rows and 18 columns:
+A \code{tibble} data frame with 43,584 rows and 5 columns:
 \describe{
-\item{OriginID}{Identifier linking the species to its native geographic region.}
-\item{SpeciesID}{Identifier linking a species to a valid taxonomic name.}
+\item{locationID}{An identifier for the set of origine information. Identifier specific to the data set}
+\item{taxonID}{An identifier for the set of taxon information. Identifier specific to the data set.}
 \item{ECO_CODE_X}{Code of the Ecoregion in a short format. See \link{meow} documentation.}
-\item{Source}{Reference indicating that the species is a cryptogenic or non-indigenous species in the area.}
-\item{Comment}{Comment about the native geographic region of a species}
+\item{references}{A related resource that is referenced, cited, or otherwise pointed to by the described resource.}
+\item{occurrenceRemarks}{Comments or notes about the native range.}
 }
 }
 }

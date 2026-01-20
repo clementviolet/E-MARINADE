@@ -3,23 +3,23 @@
 \docType{data}
 \name{inv_tbl}
 \alias{inv_tbl}
-\title{Invasion Event data}
+\title{Introduction Event data}
 \format{
 \subsection{\code{inv_tbl}}{
 
-A \code{tibble} data frame with 4,834 rows and 18 columns:
+A \code{tibble} data frame with 4,470 rows and 11 columns:
 \describe{
-\item{InvID}{Unique Identifier of an introduction event	numeric}
-\item{SpeciesID}{Identifier linking a species to a valid taxonomic}
-\item{Year}{Year of the first repported occurence}
-\item{Country}{Country where the invasion event occurred}
-\item{Status}{Origin status of the species (i.e. Non-indigenous or Cryptogenic)}
-\item{Release,Escape, Transport_contaminant, Transport_stowaway, Corridor, Unaided, Unknown}{Pathways and vectors of introduction}
-\item{MSFD_region}{Name of the  MSFD region. See \href{https://www.eea.europa.eu/en/datahub/datahubitem-view/7144675c-5c84-456f-92e0-8f832239d880}{here} for details}
-\item{MSFD_subregion}{Name of the  MSFD region. See \href{https://www.eea.europa.eu/en/datahub/datahubitem-view/7144675c-5c84-456f-92e0-8f832239d880}{here} for details}
-\item{Ecoregion_Code}{Code of the Ecoregion (sensus Marine Ecoregion of the World according to \href{https://doi.org/10.1641/B570707}{Spalding et al. 2007}) of the corresponding MSFD sub-region.}
-\item{Source}{Reference indicating that the species is a cryptogenic or non-indigenous species in the area}
-\item{DB}{Reference (e.g., database, review, or synthesis publication) compiling or citing the Source that indicates the species is cryptogenic or non-indigenous in the area}
+\item{occurenceID}{An identifier for the occurrence. Identifier specific to the data set}
+\item{taxonID}{An identifier for the set of taxon information. Identifier specific to the data set.}
+\item{year}{The four-digit year in which the introduction event occurred, according to the Common Era Calendar.}
+\item{country}{Country where the invasion event occurred}
+\item{establishmentMeans}{Statement about whether an organism has been introduced to a given place and time through the direct or indirect activity of modern humans.}
+\item{occurrenceRemarks}{Comments or notes about the occurrence.}
+\item{degreeOfEstablishment}{The degree to which a dwc:Organism survives, reproduces, and expands its range at the given place and time.}
+\item{pathway}{The process by which a dwc:Organism came to be in a given place at a given time.}
+\item{ECO_CODE_X}{Code of the Ecoregion (sensus Marine Ecoregion of the World according to \href{https://doi.org/10.1641/B570707}{Spalding et al. 2007}) of the corresponding MSFD sub-region.}
+\item{associatedReferences}{A list of publication, bibliographic reference, global unique identifier, URI)of literature associated with the occurrence.}
+\item{references}{A related resource that is referenced, cited, or otherwise pointed to by the described resource.}
 }
 }
 }
