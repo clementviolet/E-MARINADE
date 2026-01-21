@@ -50,6 +50,13 @@ invMapUI <- function() {
           color = "blue"
         )
       )
+    ),
+    shiny::fluidRow(
+      shiny::column(
+        width = 12,
+        shiny::tags$h3("Fields definitions"),
+        shiny::tableOutput("InvTableDef")
+      )
     )
   )
 }

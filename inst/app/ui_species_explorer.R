@@ -139,6 +139,16 @@ speciesSearchUI <- function(id) {
           shiny::tags$sup("1"), "Searching by AphiaID is currently supported only at the species level. Future versions will extend this feature to all taxonomic levels."
         )
       )
+    ),
+    shiny::fluidRow(
+      shiny::column(
+        width = 12,
+        shiny::tags$h3("Fields Definitions"),
+        shiny::tags$h4("Introduced Range"), 
+        shiny::tableOutput("IntroTableDef"),
+        shiny::tags$h4("Native Range"),
+        shiny::tableOutput("NatRangeDef"),
+      )
     )
   )
 }

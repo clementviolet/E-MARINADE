@@ -103,7 +103,17 @@ invasion_eu_table <- function(ecoregion) {
         ECOREGION, ECO_CODE_X,
         associatedReferences, references
       ) %>%
-      dplyr::rename_with(~stringr::str_to_sentence(.x))  ,
+        dplyr::rename(
+          Kingdom = kingdom,
+          Phylum = phylum,
+          Class = class,
+          Order = order,
+          Family = family,
+          Genus = genus,
+          Year = year,
+          Country = country,
+          References = references
+        ),
       filter = "top", extensions = c("Buttons", "Scroller"), 
       options = list(
         dom = "Bfrtip", buttons = c("copy", "csv", "excel"),

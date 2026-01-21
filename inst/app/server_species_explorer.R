@@ -314,7 +314,15 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
           dplyr::left_join(
             taxo_identifiers, by = "taxonID"
           ) %>%
-        dplyr::select(kingdom:acceptedNameUsage, EU_native, `WoRMS AphiaID`:`AlgaeBAse Taxonomic ID`),
+        dplyr::select(kingdom:acceptedNameUsage, EU_native, `WoRMS AphiaID`:`AlgaeBAse Taxonomic ID`) %>%
+        dplyr::rename(
+          Kingdom = kingdom,
+          Phylum = phylum,
+          Class = class,
+          Order = order,
+          Family = family,
+          Genus = genus
+        ),
         selection = if (input_mode() == "table") "multiple" else "none",
         filter = "top",
         extensions = c("Buttons", "Scroller"),
@@ -620,6 +628,17 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
           PROVINCE, PROV_CODE, 
           ECOREGION, ECO_CODE_X,
           associatedReferences, references
+        ) %>%
+        dplyr::rename(
+          Kingdom = kingdom,
+          Phylum = phylum,
+          Class = class,
+          Order = order,
+          Family = family,
+          Genus = genus,
+          Year = year,
+          Country = country,
+          References = references
         )
       
       DT::datatable(inv_data, extensions = c("Buttons", "Scroller"), filter = "top",
@@ -648,6 +667,17 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
           PROVINCE, PROV_CODE, 
           ECOREGION, ECO_CODE_X,
           references, occurrenceRemarks
+        ) %>%
+        dplyr::rename(
+          Kingdom = kingdom,
+          Phylum = phylum,
+          Class = class,
+          Order = order,
+          Family = family,
+          Genus = genus,
+          Year = year,
+          Country = country,
+          References = references
         )
       
       if (all(is.na(origin_data$ECO_CODE_X))) {
