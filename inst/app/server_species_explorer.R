@@ -678,8 +678,6 @@ speciesExplorerServer <- function(id, dm_data, meow) {
           Order = order,
           Family = family,
           Genus = genus,
-          Year = year,
-          Country = country,
           References = references
         )
       
