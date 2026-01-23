@@ -13,7 +13,7 @@ suppressWarnings({
 invasion_eu_map <- function(year = 2024){
   
   nb_inv_ecoregion <- dm_data$inv_tbl %>%
-    filter(is.na(year) | year <= year) %>%
+    dplyr::filter(is.na(year) | year <= year) %>%
     dplyr::filter(!is.na(ECO_CODE_X)) %>%
     dplyr::distinct(taxonID, ECO_CODE_X, .keep_all = TRUE) %>%
     dplyr::count(ECO_CODE_X)
@@ -21,9 +21,9 @@ invasion_eu_map <- function(year = 2024){
   data_plot <- meow_europe %>%
     dplyr::left_join(nb_inv_ecoregion, by = c("ECO_CODE_X")) %>%
     tidyr::replace_na(list(n = 0)) %>%
-    filter(n > 0)
+    dplyr::filter(n > 0)
   
-  pal <- leaflet::colorBin("viridis", NULL, bins = seq(0, 600, 5))
+  pal <- leaflet::colorBin("viridis", NULL, bins = seq(0, 700, 5))
   
   m <- leaflet::leaflet(data_plot) %>%
     leaflet::addTiles(options = leaflet::tileOptions(
@@ -84,7 +84,7 @@ invasion_eu_table <- function(ecoregion) {
         dplyr::left_join(
           taxoIdentifiers, by = "taxonID"
         ) %>%
-        filter(ECO_CODE_X %in% ecoregion()) %>%
+        dplyr::filter(ECO_CODE_X %in% ecoregion()) %>%
         dplyr::arrange(ECO_CODE_X) %>%
         dplyr::left_join(
           meow, by = "ECO_CODE_X", 

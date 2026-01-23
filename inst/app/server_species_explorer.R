@@ -89,9 +89,11 @@ speciesExplorerServer <- function(id, dm_data, meow) {
         
         aphia <- as.numeric(sp_input()$aphia)
         
+        if(identical(aphia, numeric(0))) aphia <- Inf
+        
         taxon_id <- dm_data$taxo_identifiers %>%
-          filter(title == "AphiaID", identifier == aphia) %>%
-          pull(taxonID)
+          dplyr::filter(title == "AphiaID", identifier == aphia) %>%
+          dplyr::pull(taxonID)
         
         dm_data$taxo_tbl$taxonID[dm_data$taxo_tbl$taxonID %in% taxon_id]
         
@@ -143,9 +145,9 @@ speciesExplorerServer <- function(id, dm_data, meow) {
       
       valid_taxon_id <- matched_aphia()
       
-      valid <- taxo_identifiers %>%
-        filter(taxonID %in% valid_taxon_id) %>%
-        pull(`WoRMS AphiaID`)
+      valid <- taxoIdentifiers %>%
+        dplyr::filter(taxonID %in% valid_taxon_id) %>%
+        dplyr::pull(`WoRMS AphiaID`)
       
       if (length(valid) > 0) {
         shinydashboard::box(
@@ -219,7 +221,7 @@ speciesExplorerServer <- function(id, dm_data, meow) {
       aphia <- as.numeric(sp_input()$aphia)
       
       aphia_df <- dm_data$taxo_identifiers %>%
-        filter(title == "AphiaID")
+        dplyr::filter(title == "AphiaID")
       
       invalid <- aphia[!aphia %in% aphia_df$identifier]
 
@@ -252,43 +254,44 @@ speciesExplorerServer <- function(id, dm_data, meow) {
         } else if(taxo_lvl() == "Phylum"){
           
           dm_data$taxo_tbl %>%
-            dplyr::filter(phylum %in% taxonID) %>%
+            dplyr::filter(phylum %in% taxon) %>%
             dplyr::pull(taxonID) %>%
             unique()
           
         } else if(taxo_lvl() == "Class"){
           
           dm_data$taxo_tbl %>%
-            dplyr::filter(class %in% taxonID) %>%
+            dplyr::filter(class %in% taxon) %>%
             dplyr::pull(taxonID) %>%
             unique()
           
         } else if(taxo_lvl() == "Order"){
           
           dm_data$taxo_tbl %>%
-            dplyr::filter(order %in% taxonID) %>%
+            dplyr::filter(order %in% taxon) %>%
             dplyr::pull(taxonID) %>%
             unique()
           
         } else if(taxo_lvl() == "Family"){
           
           dm_data$taxo_tbl %>%
-            dplyr::filter(family %in% taxonID) %>%
+            dplyr::filter(family %in% taxon) %>%
             dplyr::pull(taxonID) %>%
             unique()
           
         } else if(taxo_lvl() == "Genus"){
           
+          
           dm_data$taxo_tbl %>%
-            dplyr::filter(genus %in% taxonID) %>%
+            dplyr::filter(genus %in% taxon) %>%
             dplyr::pull(taxonID) %>%
             unique()
           
         } else{
             
-          taxon_ID <- taxo_identifiers %>%
-            filter(`WoRMS AphiaID` %in% aphia) %>%
-            pull(taxonID)
+          taxon_ID <- taxoIdentifiers %>%
+            dplyr::filter(`WoRMS AphiaID` %in% aphia) %>%
+            dplyr::pull(taxonID)
           
           dm_data$taxo_tbl %>%
             dplyr::filter(acceptedNameUsage %in% taxon | taxonID %in% taxon_ID) %>%

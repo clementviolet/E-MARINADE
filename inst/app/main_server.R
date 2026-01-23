@@ -50,8 +50,8 @@ server <- function(input, output, session){
     if (length(selected_ecoregions()) == 0) {
       shiny::HTML("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
     } else {
-      eco_names <- meow_eco %>%
-        filter(ECO_CODE_X %in% selected_ecoregions()) %>%
+      eco_names <- meow %>%
+        dplyr::filter(ECO_CODE_X %in% selected_ecoregions()) %>%
         dplyr::pull(ECOREGION) %>%
         unique()
       
