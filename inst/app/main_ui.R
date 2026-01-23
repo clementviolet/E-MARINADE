@@ -30,7 +30,7 @@ sidebar <- function(){
       shiny::HTML(
         paste0(
           "<br><br>",
-          "<img style = 'display: block; margin-left: auto; margin-right: auto;' src='wwww/Logo_ANIS-E.svg' width = '186'>",
+          "<img style = 'display: block; margin-left: auto; margin-right: auto;' src='wwww/Logo_ANIS-E.png' width = '186'>",
           "<br>"
         )
       ),
@@ -87,7 +87,7 @@ ui <- shinydashboard::dashboardPage(
   body = shinydashboard::dashboardBody(
     globalStyles(),
     shiny::tags$head(
-      shiny::tags$link(rel = "shortcut icon", href = "wwww/favicon.ico"),
+      shiny::tags$link(rel = "shortcut icon", href = "wwww/Logo_ANIS-E.svg"),
       shiny::tags$link(rel = "apple-touch-icon", sizes = "180x180", href = "wwww/apple-touch-icon.png"),
       shiny::tags$link(rel = "icon", type = "image/png", sizes = "32x32", href = "wwww/favicon-32x32.png"),
       shiny::tags$link(rel = "icon", type = "image/png", sizes = "16x16", href = "wwww/favicon-16x16.png")

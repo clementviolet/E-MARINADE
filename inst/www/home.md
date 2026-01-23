@@ -1,7 +1,7 @@
 <table style="width:100%; vertical-align: middle;">
   <tr>
     <td style="width:190px;">
-      <img src="wwww/Logo_ANIS-E.svg" width="186">
+      <img src="wwww/Logo_ANIS-E.png" width="186">
     </td>
     <td>
       <h1 style="margin-bottom: 0;">Welcome to ANIS-E</h1>
