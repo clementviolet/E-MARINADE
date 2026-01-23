@@ -2,7 +2,7 @@
 #' 
 #' A `tibble` containing the information on the taxonomic identifiers of taxa present in the Shiny app. This dataset can be useful when working with the database programmatically.
 #'
-#' @format ## `taxo_id_tbl`
+#' @format ## `taxonomy_identifiers`
 #' A `tibble` data frame with 3,511 rows and 5 columns:
 #' \describe{
 #'   \item{identifierID}{An identifier for the set of taxon information. Identifier specific to the data set.}

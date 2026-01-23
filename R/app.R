@@ -54,7 +54,7 @@ shiny_anise <- function(){
   
   # Provide taxonomical identifiers
   
-  taxo_identifiers <- dm_data$taxo_identifiers %>%
+  taxoIdentifiers <- dm_data$taxo_identifiers %>%
     tidyr::pivot_wider(
       names_from = subject, values_from = identifier
     ) %>%

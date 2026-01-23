@@ -2,16 +2,16 @@
 #'
 #' @param envir The environment where the datasets will be loaded. Defaults to the global environment.
 #'
-#' @returns Load the `taxo_tbl`, `taxo_id_tbl`,`inv_tbl`, `origin_tbl` and `meow` datasets.
+#' @returns Load the `taxonomy`, `taxonomy_identifiers`,`introudction`, `origin` and `meow` datasets.
 #' @seealso
-#' Dataset documentation: [taxo_tbl], [taxo_id_tbl], [inv_tbl], [origin_tbl], [meow_eco].
+#' Dataset documentation: [taxonomy], [taxonomy_identifiers], [introduction], [origin], [meow].
 #' @examples
 #' \dontrun{
 #'   data_anise()
 #' }
 #' @export
 data_anise <- function(envir = .GlobalEnv) {
-  data(list = c("taxo_tbl", "taxo_id_tbl", "inv_tbl", "origin_tbl", "meow"), 
+  data(list = c("taxonomy", "taxonomy_identifiers", "introduction", "origin", "meow"), 
        package = "anise", 
        envir = envir)
 }

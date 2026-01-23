@@ -2,7 +2,7 @@
 #' 
 #' A `tibble` containing the introduction events present in the Shiny app. This dataset can be useful when working with the database programmatically.
 #'
-#' @format ## `inv_tbl`
+#' @format ## `introduction`
 #' A `tibble` data frame with 4,470 rows and 11 columns:
 #' \describe{
 #'   \item{occurenceID}{An identifier for the occurrence. Identifier specific to the data set}

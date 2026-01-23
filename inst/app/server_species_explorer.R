@@ -1,4 +1,4 @@
-speciesExplorerServer <- function(id, dm_data, meow_eco) {
+speciesExplorerServer <- function(id, dm_data, meow) {
   
   moduleServer(id, function(input, output, session) {
     
@@ -312,7 +312,7 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
             ), 
             by = "taxonID") %>%
           dplyr::left_join(
-            taxo_identifiers, by = "taxonID"
+            taxoIdentifiers, by = "taxonID"
           ) %>%
         dplyr::select(kingdom:acceptedNameUsage, EU_native, `WoRMS AphiaID`:`AlgaeBAse Taxonomic ID`) %>%
         dplyr::rename(
@@ -394,22 +394,22 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
         dplyr::add_count(ECO_CODE_X)
       
       # Get matching polygons
-      native_polygons_unique <- meow_eco %>%
+      native_polygons_unique <- meow %>%
         dplyr::filter(ECO_CODE_X %in% origin_data$ECO_CODE_X[origin_data$n == 1])
       
-      native_polygons_multiple <- meow_eco %>%
+      native_polygons_multiple <- meow %>%
         dplyr::filter(ECO_CODE_X %in% origin_data$ECO_CODE_X[origin_data$n > 1])
       
-      inv_polygons_unique <- meow_eco %>%
+      inv_polygons_unique <- meow %>%
         dplyr::filter(ECO_CODE_X %in% inv_data$ECO_CODE_X[inv_data$n == 1])
       
-      inv_polygons_multiple <- meow_eco %>%
+      inv_polygons_multiple <- meow %>%
         dplyr::filter(ECO_CODE_X %in% inv_data$ECO_CODE_X[inv_data$n > 1])
       
-      crypt_polygons_unique <- meow_eco %>%
+      crypt_polygons_unique <- meow %>%
         dplyr::filter(ECO_CODE_X %in% crypt_data$ECO_CODE_X[inv_data$n == 1])
       
-      crypt_polygons_multiple <- meow_eco %>%
+      crypt_polygons_multiple <- meow %>%
         dplyr::filter(ECO_CODE_X %in% crypt_data$ECO_CODE_X[inv_data$n > 1])
       
       inv_crypt_eco_code <- inv_data %>%
@@ -428,7 +428,7 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
           )
         ) %>%
         dplyr::distinct(ECO_CODE_X, .keep_all = TRUE) %>%
-        dplyr::left_join(meow_eco, by = "ECO_CODE_X") %>%
+        dplyr::left_join(meow, by = "ECO_CODE_X") %>%
         sf::st_as_sf()
       
       # Dealing with the case we have introduced and cryptogenic in the same polygon
@@ -447,12 +447,12 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
         crypt_polygons_multiple <- crypt_polygons_multiple %>%
           dplyr::filter(!ECO_CODE_X %in% inv_crypt_eco_code$ECO_CODE_X)
         
-        inv_crypt_polygons <- meow_eco %>%
+        inv_crypt_polygons <- meow %>%
           dplyr::filter(ECO_CODE_X %in% inv_crypt_eco_code$ECO_CODE_X)
         
       } else {
         
-        inv_crypt_polygons <- meow_eco %>%
+        inv_crypt_polygons <- meow %>%
           dplyr::filter(is.na(ECO_CODE_X))
         
       }
@@ -616,10 +616,10 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
       
       inv_data <- dm_data$inv_tbl %>%
         dplyr::filter(taxonID %in% taxon_id) %>%
-        dplyr::left_join(meow_eco, by = "ECO_CODE_X") %>%
+        dplyr::left_join(meow, by = "ECO_CODE_X") %>%
         dplyr::left_join(dm_data$taxo_tbl, by = "taxonID") %>%
         dplyr::left_join(
-          taxo_identifiers, by = "taxonID"
+          taxoIdentifiers, by = "taxonID"
         ) %>%
         dplyr::select(
           kingdom:acceptedNameUsage, `WoRMS AphiaID`:`AlgaeBAse Taxonomic ID`, 
@@ -656,10 +656,10 @@ speciesExplorerServer <- function(id, dm_data, meow_eco) {
       
       origin_data <- dm_data$origin_tbl %>%
         dplyr::filter(taxonID %in% taxon_id) %>%
-        dplyr::left_join(meow_eco, by = "ECO_CODE_X") %>%
+        dplyr::left_join(meow, by = "ECO_CODE_X") %>%
         dplyr::left_join(dm_data$taxo_tbl, by = "taxonID") %>%
         dplyr::left_join(
-          taxo_identifiers, by = "taxonID"
+          taxoIdentifiers, by = "taxonID"
         ) %>%
         dplyr::select(
           kingdom:acceptedNameUsage, `WoRMS AphiaID`:`AlgaeBAse Taxonomic ID`,

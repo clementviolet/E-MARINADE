@@ -2,7 +2,7 @@
 #' 
 #' A `tibble` containing information about the native range of taxa listed as non-indigenous species in the Shiny app. This dataset can be useful when working with the database programmatically.
 #'
-#' @format ## `origin_tbl`
+#' @format ## `origin`
 #' A `tibble` data frame with 43,584 rows and 5 columns:
 #' \describe{
 #'   \item{locationID}{An identifier for the set of origine information. Identifier specific to the data set}

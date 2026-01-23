@@ -1,5 +1,5 @@
-meow_europe <- meow_eco %>%
-  filter(ECO_CODE_X %in% c(2, 20:27, 29:36, 44))
+meow_europe <- meow %>%
+  dplyr::filter(ECO_CODE_X %in% c(2, 20:27, 29:36, 44))
 
 suppressWarnings({
   
@@ -10,7 +10,7 @@ suppressWarnings({
   
 })
 
-invasion_eu_map <- function(year = 2023){
+invasion_eu_map <- function(year = 2024){
   
   nb_inv_ecoregion <- dm_data$inv_tbl %>%
     filter(is.na(year) | year <= year) %>%
@@ -69,11 +69,11 @@ invasion_eu_table <- function(ecoregion) {
       data <- dm_data$taxo_tbl %>% 
         dplyr::left_join(dm_data$inv_tbl, by = "taxonID") %>% 
         dplyr::left_join(
-          meow_eco, by ="ECO_CODE_X", 
+          meow, by ="ECO_CODE_X", 
           relationship = "many-to-many"
         ) %>%
         dplyr::left_join(
-          taxo_identifiers, by = "taxonID"
+          taxoIdentifiers, by = "taxonID"
         ) %>%
         dplyr::slice(0) # Make an empty table
       
@@ -82,12 +82,12 @@ invasion_eu_table <- function(ecoregion) {
       data <- dm_data$taxo_tbl %>% 
         dplyr::left_join(dm_data$inv_tbl, by = "taxonID") %>%
         dplyr::left_join(
-          taxo_identifiers, by = "taxonID"
+          taxoIdentifiers, by = "taxonID"
         ) %>%
         filter(ECO_CODE_X %in% ecoregion()) %>%
         dplyr::arrange(ECO_CODE_X) %>%
         dplyr::left_join(
-          meow_eco, by = "ECO_CODE_X", 
+          meow, by = "ECO_CODE_X", 
           relationship = "many-to-many"
         ) %>%
         dplyr::distinct(acceptedNameUsage, ECO_CODE_X, .keep_all = TRUE)
