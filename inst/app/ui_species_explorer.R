@@ -12,13 +12,14 @@ speciesSearchUI <- function(id) {
       shiny::column(
         width = 12,
         shiny::tags$p(
-          "Click on a row in the taxonomic table or use the input field to filter by species/AphiaIDs.",
+          "Click on one or more rows in the taxonomic table or use the input field to filter by species/AphiaIDs.",
           shiny::tags$sup(
             shiny::tags$a(href = "#note-1", "1")
             )
           ),
-        shiny::tags$p("In the tables below, you will be able to access and download the information about the introduced and native range.")
-      )
+        shiny::tags$p("In the tables below, you will be able to access and download the information about the introduced and native range."),
+        shiny::tags$p("After clicking on one ore more rows or input species/AphiaIDS, use the species drop-down menu to adjust your selection, which will display maps and information on introduced and native areas")
+        )
     ),
     shiny::fluidRow(
       shiny::column(
@@ -85,8 +86,8 @@ speciesSearchUI <- function(id) {
         )
       ),
     ),
-    
     shiny::fluidRow(
+      style = "margin-top: 48px; margin-bottom: 48px;",
       shiny::column(
         width = 12,
         shiny::uiOutput(ns("SpeciesListPicker"))  # Renders the picker from the server
