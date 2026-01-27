@@ -349,7 +349,7 @@ speciesExplorerServer <- function(id, dm_data, meow) {
       
       shinyWidgets::pickerInput(
         inputId = ns("SpeciesListPicker"),
-        label = "Refine species to plot and show in the tables", 
+        label = "Select species to plot and show in the tables", 
         choices = stats::setNames(choices$taxonID, choices$acceptedNameUsage),
         multiple = TRUE,
         options = shinyWidgets::pickerOptions(container = "body", 

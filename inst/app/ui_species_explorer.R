@@ -18,7 +18,9 @@ speciesSearchUI <- function(id) {
             )
           ),
         shiny::tags$p("In the tables below, you will be able to access and download the information about the introduced and native range."),
-        shiny::tags$p("After clicking on one ore more rows or input species/AphiaIDS, use the species drop-down menu to adjust your selection, which will display maps and information on introduced and native areas")
+        shiny::tags$p("After clicking on one ore more rows or input species/AphiaIDS, use the", 
+                      shiny::tags$span("Select species to plot and show in the tables", style = "font-weight: bold; background-color: #f0f0f0; padding: 2px 6px; border-radius: 4px; border: 1px solid #ccc;"),
+                      "drop-down menu to adjust your selection, which will display maps and information on introduced and native areas for the selected species.")
         )
     ),
     shiny::fluidRow(
