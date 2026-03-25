@@ -28,6 +28,7 @@ shiny_anise <- function(){
   dm_data <- dm::dm_get_tables(data_env$dm_data) %>%
     dm::as_dm()
 
+  meow <- data_env$meow
   meow_eco <- data_env$meow_eco
   meow_prov <- data_env$meow_prov
   meow_rlm <- data_env$meow_rlm
