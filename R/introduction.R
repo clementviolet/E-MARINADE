@@ -17,5 +17,6 @@
 #'   \item{associatedReferences}{A list of publication, bibliographic reference, global unique identifier, URI)of literature associated with the occurrence.}
 #'   \item{references}{A related resource that is referenced, cited, or otherwise pointed to by the described resource.}
 #' }
-#' @source E-MARINADE package
-"inv_tbl"
+#' @source ANIS-E package
+
+"introduction"

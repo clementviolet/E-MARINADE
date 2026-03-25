@@ -9,5 +9,6 @@
 #'   \item{Kingdom, Phylum, Class, Order, Family, Genus}{The full scientific name in which the taxon is classified}
 #'   \item{acceeptedNameUsage}{The full name, with authorship and date information if known, of the currently valid (zoological) or accepted (botanical) taxon.}
 #'   }
-#' @source E-MARINADE package
-"taxo_tbl"
+#' @source ANIS-E package
+
+"taxonomy"

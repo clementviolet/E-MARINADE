@@ -6,7 +6,7 @@
 #' @importFrom dplyr filter
 #' @return A \code{shiny.appobj} (the running app). The function is usually called for its side effect of launching the app.
 #' @seealso
-#' Dataset documentation: [taxo_tbl], [inv_tbl], [origin_tbl], [meow_eco].
+#' Dataset documentation: [taxonomy], [introduction], [origin], [taxonomy], [taxonomy_identifiers], [meow].
 #'
 #' @examples
 #' \dontrun{

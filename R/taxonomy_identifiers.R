@@ -11,5 +11,6 @@
 #'   \item{identifier}{Other known identifier used for the same taxon. Can be a URL pointing to a webpage, an xml or rdf document, a DOI, UUID or any other identifer.}
 #'   \item{subject}{Keywords qualifying the identifier}
 #'   }
-#' @source E-MARINADE package
-"taxo_id_tbl"
+#' @source ANIS-E package
+
+"taxonomy_identifiers"

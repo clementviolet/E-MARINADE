@@ -2,7 +2,7 @@
 #'
 #' A `sf object` containing the Marine Ecoregions of the World described by @Spalding_2007, a nested system of realms, provinces, and ecoregions This dataset can be useful when working with the database programmatically.
 #'
-#' @format ## `inv_tbl`
+#' @format ## `meow`
 #' A `tibble` data frame with 232 rows and 9 columns:
 #' \describe{
 #'   \item{ECO_CODE}{Code of the Province.}
