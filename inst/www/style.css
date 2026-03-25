@@ -23,3 +23,14 @@ body {
   padding-top: 22px;
   padding-bottom: 22px;
 }
+
+/* ----- Tables ----- */
+table.table.shiny-table > thead:first-child > tr:first-child > th {
+  border-top: 1px solid black !important;
+  border-bottom: 2px solid black !important;
+}
+
+table.shiny-table th,
+table.shiny-table td {
+  border: 1px solid black;
+}
