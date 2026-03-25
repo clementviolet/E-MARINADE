@@ -19,5 +19,5 @@ The function loads prebuilt data objects and then runs the Shiny UI/server.
 }
 }
 \seealso{
-Dataset documentation: \link{taxo_tbl}, \link{inv_tbl}, \link{origin_tbl}, \link{meow_eco}.
+Dataset documentation: \link{taxonomy}, \link{introduction}, \link{origin}, \link{taxonomy}, \link{taxonomy_identifiers}, \link{meow}.
 }

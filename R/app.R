@@ -37,21 +37,15 @@ shiny_anise <- function(){
 
   rm(data_env)
   
-  # Retrieve species native of EU but NIS in other part of EU
+  # Pathway
   
-  eu_nativeID <- dm_data$origin_tbl %>% 
-    dplyr::filter(ECO_CODE_X %in% europe_ecoregions) %>% 
-    dplyr::pull(taxonID) %>% 
-    unique()
-  
-  dm_data <- dm_data %>%
-    dm::dm_zoom_to(inv_tbl) %>%
-    dplyr::mutate(
-      EU_native = dplyr::if_else(taxonID %in% eu_nativeID, TRUE, FALSE),
-      .after = "country"
-    ) %>%
-    dm::dm_update_zoomed()
-  
+  pathway_wide <- dm_data$pathway_tbl %>%
+    dplyr::mutate(values = TRUE) %>%
+    tidyr::pivot_wider(
+      names_from = pathway,
+      values_from = values,
+      values_fill = NA
+    )
   
   # Provide taxonomical identifiers
   

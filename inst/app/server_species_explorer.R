@@ -310,14 +310,14 @@ speciesExplorerServer <- function(id, dm_data, meow) {
         dm_data$taxo_tbl %>% 
           dplyr::left_join(
             dplyr::distinct(
-              dplyr::select(dm_data$inv_tbl, taxonID, EU_native),
+              dplyr::select(dm_data$origin_tbl, taxonID, nativeEurope),
               taxonID, .keep_all = TRUE
             ), 
             by = "taxonID") %>%
           dplyr::left_join(
             taxoIdentifiers, by = "taxonID"
           ) %>%
-        dplyr::select(kingdom:acceptedNameUsage, EU_native, `WoRMS AphiaID`:`AlgaeBAse Taxonomic ID`) %>%
+        dplyr::select(kingdom:acceptedNameUsage, nativeEurope, `WoRMS AphiaID`:`AlgaeBAse Taxonomic ID`) %>%
         dplyr::rename(
           Kingdom = kingdom,
           Phylum = phylum,
@@ -383,14 +383,16 @@ speciesExplorerServer <- function(id, dm_data, meow) {
         dplyr::add_count(ECO_CODE_X)
       
       inv_data <- dm_data$inv_tbl %>%
-        dplyr::filter(establishmentMeans == "introduced") %>%
+        dplyr::left_join(pathway_wide, by = "occurenceID") %>%
+        dplyr::filter(establishmentMeans == "Non-indigenous") %>%
         dplyr::filter(taxonID %in% selected) %>%
         dplyr::arrange(taxonID, year) %>%
         dplyr::distinct(taxonID, ECO_CODE_X, .keep_all = TRUE) %>%
         dplyr::add_count(ECO_CODE_X)
       
       crypt_data <- dm_data$inv_tbl %>%
-        dplyr::filter(establishmentMeans == "uncertain") %>%
+        dplyr::left_join(pathway_wide, by = "occurenceID") %>%
+        dplyr::filter(establishmentMeans == "Cryptogenic") %>%
         dplyr::filter(taxonID %in% selected) %>%
         dplyr::arrange(taxonID, year) %>%
         dplyr::distinct(taxonID, ECO_CODE_X, .keep_all = TRUE) %>%
@@ -418,7 +420,7 @@ speciesExplorerServer <- function(id, dm_data, meow) {
       inv_crypt_eco_code <- inv_data %>%
         dplyr::bind_rows(crypt_data) %>%
         dplyr::group_split(ECO_CODE_X) %>%
-        purrr::keep(~{all(c("uncertain", "introduced") %in% unique(.$establishmentMeans))}) %>%
+        purrr::keep(~{all(c("Cryptogenic", "Non-indigenous") %in% unique(.$establishmentMeans))}) %>%
         purrr::list_rbind()
         
       nat_inv_crypt_polygons <- origin_data %>%
@@ -618,6 +620,7 @@ speciesExplorerServer <- function(id, dm_data, meow) {
       
       
       inv_data <- dm_data$inv_tbl %>%
+        dplyr::left_join(pathway_wide, by = "occurenceID") %>%
         dplyr::filter(taxonID %in% taxon_id) %>%
         dplyr::left_join(meow, by = "ECO_CODE_X") %>%
         dplyr::left_join(dm_data$taxo_tbl, by = "taxonID") %>%
@@ -669,7 +672,7 @@ speciesExplorerServer <- function(id, dm_data, meow) {
           REALM, RLM_CODE, 
           PROVINCE, PROV_CODE, 
           ECOREGION, ECO_CODE_X,
-          references, occurrenceRemarks
+          references
         ) %>%
         dplyr::rename(
           Kingdom = kingdom,

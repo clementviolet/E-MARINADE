@@ -10,7 +10,7 @@ data_anise(envir = .GlobalEnv)
 \item{envir}{The environment where the datasets will be loaded. Defaults to the global environment.}
 }
 \value{
-Load the \code{taxo_tbl}, \code{taxo_id_tbl},\code{inv_tbl}, \code{origin_tbl} and \code{meow} datasets.
+Load the \code{taxonomy}, \code{taxonomy_identifiers},\code{introudction}, \code{origin} and \code{meow} datasets.
 }
 \description{
 Loading all anise datasets
@@ -21,5 +21,5 @@ Loading all anise datasets
 }
 }
 \seealso{
-Dataset documentation: \link{taxo_tbl}, \link{taxo_id_tbl}, \link{inv_tbl}, \link{origin_tbl}, \link{meow_eco}.
+Dataset documentation: \link{taxonomy}, \link{taxonomy_identifiers}, \link{introduction}, \link{origin}, \link{meow}.
 }

@@ -75,6 +75,7 @@ invasion_eu_table <- function(ecoregion) {
         dplyr::left_join(
           taxoIdentifiers, by = "taxonID"
         ) %>%
+        dplyr::left_join(pathway_wide, by = "occurenceID") %>%
         dplyr::slice(0) # Make an empty table
       
     } else {
@@ -84,13 +85,15 @@ invasion_eu_table <- function(ecoregion) {
         dplyr::left_join(
           taxoIdentifiers, by = "taxonID"
         ) %>%
+        dplyr::left_join(pathway_wide, by = "occurenceID") %>%
         dplyr::filter(ECO_CODE_X %in% ecoregion()) %>%
         dplyr::arrange(ECO_CODE_X) %>%
         dplyr::left_join(
           meow, by = "ECO_CODE_X", 
           relationship = "many-to-many"
         ) %>%
-        dplyr::distinct(acceptedNameUsage, ECO_CODE_X, .keep_all = TRUE)
+        dplyr::distinct(acceptedNameUsage,country, ECO_CODE_X, .keep_all = TRUE)
+        
     }
     
     DT::datatable(

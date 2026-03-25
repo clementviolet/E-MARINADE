@@ -105,7 +105,7 @@ speciesSearchUI <- function(id) {
         width = 12,
         shiny::br(), shiny::br(),
         shiny::tags$p(
-          shiny::tags$strong("NB:"), "If a species has no known native area, the ",
+          shiny::tags$strong("NB:"), "If all selected species has no known native area, the ",
           shiny::tags$span("Native Range", style = "font-weight: bold; background-color: #f0f0f0; padding: 2px 6px; border-radius: 4px; border: 1px solid #ccc;"),
           " subpanel will be empty."
         )

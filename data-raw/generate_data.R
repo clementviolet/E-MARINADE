@@ -6,6 +6,7 @@ sf::sf_use_s2(FALSE)
 
 # Loading up to date tables
 introduction <- read_csv("../ENI_Listing/EML/data_objects/introduction.csv")
+pathway <- read_csv("../ENI_Listing/EML/data_objects/pathway.csv")
 taxonomy <- read_csv("../ENI_Listing/EML/data_objects/taxonomy.csv")
 taxonomy_identifiers <- read_csv("../ENI_Listing/EML/data_objects/taxonomy_identifiers.csv")
 meow_tbl <- read_csv("../ENI_Listing/EML/data_objects/meow.csv")
@@ -53,7 +54,7 @@ save(dm_data, meow, meow_prov, meow_rlm, file = "inst/app/data/shiny_app_data.rd
 # Exporting the datasets
 
 usethis::use_data(
-  introduction, taxonomy, 
-  taxonomy_identifiers, origin, 
-  meow, overwrite = TRUE
+  introduction, pathway,
+  taxonomy, taxonomy_identifiers, 
+  origin, meow, overwrite = TRUE
   )
