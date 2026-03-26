@@ -412,10 +412,10 @@ speciesExplorerServer <- function(id, dm_data, meow) {
         dplyr::filter(ECO_CODE_X %in% inv_data$ECO_CODE_X[inv_data$n > 1])
       
       crypt_polygons_unique <- meow %>%
-        dplyr::filter(ECO_CODE_X %in% crypt_data$ECO_CODE_X[inv_data$n == 1])
+        dplyr::filter(ECO_CODE_X %in% crypt_data$ECO_CODE_X[crypt_data$n == 1])
       
       crypt_polygons_multiple <- meow %>%
-        dplyr::filter(ECO_CODE_X %in% crypt_data$ECO_CODE_X[inv_data$n > 1])
+        dplyr::filter(ECO_CODE_X %in% crypt_data$ECO_CODE_X[crypt_data$n > 1])
       
       inv_crypt_eco_code <- inv_data %>%
         dplyr::bind_rows(crypt_data) %>%
