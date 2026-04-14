@@ -42,3 +42,5 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://clementviolet.github.io/ANIS-E/, https://github.com/clementviolet/ANIS-E
+BugReports: https://github.com/clementviolet/ANIS-E/issues

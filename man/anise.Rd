@@ -23,6 +23,15 @@ The \code{anise} package provides:
 }
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://clementviolet.github.io/ANIS-E/}
+  \item \url{https://github.com/clementviolet/ANIS-E}
+  \item Report bugs at \url{https://github.com/clementviolet/ANIS-E/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Clément Violet \email{clement.violet@umontpellier.fr} (\href{https://orcid.org/0000-0001-6217-5891}{ORCID})
 
