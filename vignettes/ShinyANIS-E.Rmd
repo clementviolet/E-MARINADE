@@ -1,8 +1,8 @@
 ---
-title: E-Marinade
+title: ANIS-E
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{E-Marinade}
+  %\VignetteIndexEntry{ANIS-E}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -25,9 +25,9 @@ This vignette explains how to use the Shiny application to explore *Non-Indigeno
 To launch the app, simply write in the terminal:
 
 ```{r setup, eval = FALSE}
-library(emarinade)
+library(anise)
 
-shiny_emarinade()
+shiny_anise()
 ```
 
 After launch, the browser shows the `Home page` with a left sidebar for navigation.
@@ -55,9 +55,9 @@ The map is composed of polygons that correspond to MEOW ecoregions (see [Spaldin
 
 To inspect a specific region, simply click on a polygon. The label "Selected Ecoregion(s)" will update, and the species table located below the map will refresh automatically to display all species present in the chosen region. It is also possible to select multiple regions, in which case the table will aggregate the species across all selected areas. To clear the selections and return to the default view, use the `Reset Table` button.
 
-![Selected regions and table](figures/map_selection_table.png){width="100%"}
+![](figures/map_selection_table.png){width="100%"}
 
-The species table displayed under the map contains several columns: the taxonomy (from Kindgom down to Species), the *AphiaID* identifier linking the species to the [World Register of Marine Species](https://www.marinespecies.org/) database, the year of the first observation of the taxon in the area, the MSFD subregion, and the associated Realm, Province, and Ecoregion under the *Marine Ecoregion of the World* framework. The table also specifies the original source for each record.
+The species table displayed under the map contains several columns: the taxonomy (from Kindgom down to Species), the *AphiaID* identifier linking the species to the [World Register of Marine Species](https://www.marinespecies.org/) database, the year the taxon was first reported in the area, the *MSFD* subregion, and the associated Realm, Province, and Ecoregion under the *Marine Ecoregion of the World* framework. The table also specifies the original source for each record.
 
 # Species Explorer
 
@@ -67,14 +67,15 @@ In `Table mode`, the process is straightforward: locate the taxonomic table, cli
 
 ![](figures/explorer_table_mode.png){width="100%"}
 
-In `Text mode`, the input is given manually. You switch the input to text, choose a taxonomic level (the default is *Species*, and AphiaIDs are disabled for broader levels such as Genus or Family), and paste one
-entry per line, either a species name or an AphiaID (only available if the taxonomic level choosen is "Species"). For example:
+In `Text mode`, the input is given manually. You switch the input to text, choose a taxonomic level (the default is *Species*, and AphiaIDs are disabled for broader levels such as Genus or Family[^1]), and paste one entry per line, either a species name or an AphiaID (only available if the taxonomic level choosen is "Species"). For example:
 
 > Caulerpa taxifolia
 >
 > 417798
 >
 > Homo sapiens
+
+[^1]: Searching by AphiaID is currently supported only at the species level. Future versions will extend this feature to all taxonomic levels.
 
 ![](figures/explorer_text_mode_warnings.png){width=100%}  
 
@@ -106,12 +107,8 @@ For a batch list query, change the input mode to `text`. Paste a list of species
 
 - **Empty results**: If a panel shows no data, this usually means that the species does not have records for that specific category. For example, some species may lack native polygons in the database. In such cases, check the other panel (Introduced or Native) to see if information is available there.  
 
-- **Invalid text input**: Errors can occur if species names are misspelled or if AphiaIDs are entered incorrectly. Always use the correct spelling and verify AphiaIDs against reliable sources such as WoRMS. When invalid entries are detected, the app displays a warning box listing the problematic items so that you can correct them and re-run the search.  
+- **Invalid text input**: Errors may occur if species names are misspelled or if AphiaIDs are entered incorrectly. Always ensure correct spelling, verify AphiaIDs, and check for synonymy using [WoRMS](https://www.marinespecies.org/). When invalid entries are detected, the app displays a warning box listing the problematic items so that you can correct them and re-run the search.  
 
 - **Performance**: Large queries with many species may slow down map rendering and table updates. To improve responsiveness, start with a smaller set of species and gradually increase the number if needed.  
 
 - **Reset**: If the interface becomes cluttered or selections are confusing, you can reset easily. In the Species Explorer, use the `Deselect All` button of the drop-down menu to reset the taxonomic table and outputs. In the European Introduction Map, use the `Reset Table` button to clear all selected regions.  
-
-# Exporting Results
-
-All tables in the application provide `Copy` (copy to clipboard), `CSV`, and `Excel` export buttons, making it easy to save or share the data according to your needs. 

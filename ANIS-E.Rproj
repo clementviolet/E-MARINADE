@@ -1,5 +1,4 @@
 Version: 1.0
-ProjectId: ade0827a-4885-41af-bf0e-2cd4b8966150
 
 RestoreWorkspace: Default
 SaveWorkspace: Default
@@ -16,5 +15,6 @@ LaTeX: pdfLaTeX
 BuildType: Package
 PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch --with-keep.source
+PackageRoxygenize: rd,collate,namespace,vignette
 
-ProjectName: E-MARINADE
+ProjectName: ANIS-E

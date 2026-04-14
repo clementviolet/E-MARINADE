@@ -5,7 +5,7 @@
 \alias{meow}
 \title{Marine Ecoregion Of the World}
 \format{
-\subsection{\code{inv_tbl}}{
+\subsection{\code{meow}}{
 
 A \code{tibble} data frame with 232 rows and 9 columns:
 \describe{

@@ -1,7 +1,7 @@
 globalStyles <- function() {
   shiny::tagList(
     # Include custom styles
-    shiny::includeCSS(system.file("www/style.css", package = "emarinade")),
+    shiny::includeCSS(system.file("www/style.css", package = "anise")),
     
     # Hide Shiny warnings
     shiny::tags$style(

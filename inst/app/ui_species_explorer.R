@@ -12,13 +12,16 @@ speciesSearchUI <- function(id) {
       shiny::column(
         width = 12,
         shiny::tags$p(
-          "Click on a row in the taxonomic table or use the input field to filter by species/AphiaIDs.",
+          "Click on one or more rows in the taxonomic table or use the input field to filter by species/AphiaIDs.",
           shiny::tags$sup(
             shiny::tags$a(href = "#note-1", "1")
             )
           ),
-        shiny::tags$p("In the tables below, you will be able to access and download the information about the introduced and native range.")
-      )
+        shiny::tags$p("In the tables below, you will be able to access and download the information about the introduced and native range."),
+        shiny::tags$p("After clicking on one ore more rows or input species/AphiaIDS, use the", 
+                      shiny::tags$span("Select species to plot and show in the tables", style = "font-weight: bold; background-color: #f0f0f0; padding: 2px 6px; border-radius: 4px; border: 1px solid #ccc;"),
+                      "drop-down menu to adjust your selection, which will display maps and information on introduced and native areas for the selected species.")
+        )
     ),
     shiny::fluidRow(
       shiny::column(
@@ -85,8 +88,8 @@ speciesSearchUI <- function(id) {
         )
       ),
     ),
-    
     shiny::fluidRow(
+      style = "margin-top: 48px; margin-bottom: 48px;",
       shiny::column(
         width = 12,
         shiny::uiOutput(ns("SpeciesListPicker"))  # Renders the picker from the server
@@ -102,7 +105,7 @@ speciesSearchUI <- function(id) {
         width = 12,
         shiny::br(), shiny::br(),
         shiny::tags$p(
-          shiny::tags$strong("NB:"), "If a species has no known native area, the ",
+          shiny::tags$strong("NB:"), "If all selected species has no known native area, the ",
           shiny::tags$span("Native Range", style = "font-weight: bold; background-color: #f0f0f0; padding: 2px 6px; border-radius: 4px; border: 1px solid #ccc;"),
           " subpanel will be empty."
         )
@@ -138,6 +141,16 @@ speciesSearchUI <- function(id) {
           style = "font-size: 12px; color: grey;",
           shiny::tags$sup("1"), "Searching by AphiaID is currently supported only at the species level. Future versions will extend this feature to all taxonomic levels."
         )
+      )
+    ),
+    shiny::fluidRow(
+      shiny::column(
+        width = 12,
+        shiny::tags$h3("Fields Definitions"),
+        shiny::tags$h4("Introduced Range"), 
+        shiny::tableOutput("IntroTableDef"),
+        shiny::tags$h4("Native Range"),
+        shiny::tableOutput("NatRangeDef"),
       )
     )
   )

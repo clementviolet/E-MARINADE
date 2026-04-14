@@ -4,9 +4,9 @@
 NULL
 
 
-#' emarinade: Explore Marine Non-Indigenous Species Data
+#' anise: Explore Marine Non-Indigenous Species Data
 #'
-#' The **emarinade** package provides:
+#' The `anise` package provides:
 #' - Curated datasets: `taxo_tbl`, `inv_tbl`, `origin_tbl`, `meow`
 #' - A Shiny app for species search, taxonomy exploration, and mapping
 #' - Functions for working with invasion and native range data
@@ -17,8 +17,8 @@ NULL
 #' - `origin_tbl`: Native range records
 #' - `meow`: Marine ecoregions polygons
 #'
-#' @name emarinade
+#' @name anise
 #' @keywords internal
-#' @aliases emarinade-package emarinade
+#' @aliases anise-package anise
 #' @keywords package
 "_PACKAGE"
