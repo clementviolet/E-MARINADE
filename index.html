@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>European MARIne Alien Data Explorer • emarinade</title>
+<title>ANIS-E: Atlas of marine Non-Indigenous Species in Europe • anise</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="European MARIne Alien Data Explorer">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="ANIS-E: Atlas of marine Non-Indigenous Species in Europe">
 <meta name="description" content="A Shiny application to explore marine non-indigenous species in European waters.">
 <meta property="og:description" content="A Shiny application to explore marine non-indigenous species in European waters.">
 </head>
@@ -20,9 +20,9 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="index.html">emarinade</a>
+    <a class="navbar-brand me-2" href="index.html">anise</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/ShinyE-Marinade.html">E-Marinade</a></li>
+<li><a class="dropdown-item" href="articles/ShinyANIS-E.html">ANIS-E</a></li>
   </ul>
 </li>
       </ul>
@@ -51,19 +51,45 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="readme">README<a class="anchor" aria-label="anchor" href="#readme"></a>
+<div class="page-header"><h1 id="anise-">anise <img src="inst/www/Logo_ANIS-E.svg" align="right" height="138"><a class="anchor" aria-label="anchor" href="#anise-"></a>
 </h1></div>
+<!-- badges: start -->
+<!-- badges: end -->
+<p>The goal of <code>anise</code> is to provide an easy access to the data of the <em>Atlas of marine Non-Indigenous Species in Europe</em> through a Shiny App or load them directly in the R user environment for further analysis.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Use <code>devtools::install_github("clementviolet/E-MARINADE")</code> to install this package.</p>
+<p>You can install the development version of anise from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"xx/xx"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="run-the-shiny-app">Run the Shiny App<a class="anchor" aria-label="anchor" href="#run-the-shiny-app"></a>
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://clementviolet.github.io/E-MARINADE/">emarinade</a></span><span class="op">)</span></span>
+<div class="section level3">
+<h3 id="shiny-app">Shiny App<a class="anchor" aria-label="anchor" href="#shiny-app"></a>
+</h3>
+<p>After loading the R package, you can launch the shiny app with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">anise</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/shiny_emarinade.html">shiny_emarinade</a></span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<span><span class="fu"><a href="reference/shiny_anise.html">shiny_anise</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="loading-the-datasets">Loading the datasets<a class="anchor" aria-label="anchor" href="#loading-the-datasets"></a>
+</h3>
+<p>You can also load the different datasets through:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/data_anise.html">data_anise</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>or individual dataset using:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">taxo_tbl</span></span>
+<span><span class="va">inv_tbl</span></span>
+<span><span class="va">origin_tbl</span></span>
+<span><span class="va">meow</span></span></code></pre></div>
+<p>See the package documentation for the description of the different datasets.</p>
+</div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
@@ -78,7 +104,7 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing emarinade</a></li>
+<li><a href="authors.html#citation">Citing anise</a></li>
 </ul>
 </div>
 
@@ -104,7 +130,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

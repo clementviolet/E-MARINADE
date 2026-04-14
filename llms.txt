@@ -1,0 +1,74 @@
+# anise ![](inst/www/Logo_ANIS-E.svg)
+
+The goal of `anise` is to provide an easy access to the data of the
+*Atlas of marine Non-Indigenous Species in Europe* through a Shiny App
+or load them directly in the R user environment for further analysis.
+
+## Installation
+
+You can install the development version of anise from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("xx/xx")
+```
+
+## Example
+
+### Shiny App
+
+After loading the R package, you can launch the shiny app with:
+
+``` r
+library(anise)
+
+shiny_anise()
+```
+
+### Loading the datasets
+
+You can also load the different datasets through:
+
+``` r
+data_anise()
+```
+
+or individual dataset using:
+
+``` r
+taxo_tbl
+inv_tbl
+origin_tbl
+meow
+```
+
+See the package documentation for the description of the different
+datasets.
+
+# Package index
+
+## All functions
+
+- [`data_anise()`](https://clementviolet.github.io/E-MARINADE/reference/data_anise.md)
+  : Loading all anise datasets
+- [`introduction`](https://clementviolet.github.io/E-MARINADE/reference/introduction.md)
+  : Introduction Event data
+- [`meow`](https://clementviolet.github.io/E-MARINADE/reference/meow.md)
+  : Marine Ecoregion Of the World
+- [`origin`](https://clementviolet.github.io/E-MARINADE/reference/origin.md)
+  : Native range records
+- [`pathway`](https://clementviolet.github.io/E-MARINADE/reference/pathway.md)
+  : Introduction Pathway data
+- [`shiny_anise()`](https://clementviolet.github.io/E-MARINADE/reference/shiny_anise.md)
+  : Launch the ANIS-E Shiny app
+- [`taxonomy`](https://clementviolet.github.io/E-MARINADE/reference/taxonomy.md)
+  : Taxonomy Information data
+- [`taxonomy_identifiers`](https://clementviolet.github.io/E-MARINADE/reference/taxonomy_identifiers.md)
+  : Taxonomic Identifiers Information data
+
+# Articles
+
+### All vignettes
+
+- [ANIS-E](https://clementviolet.github.io/E-MARINADE/articles/ShinyANIS-E.md):
