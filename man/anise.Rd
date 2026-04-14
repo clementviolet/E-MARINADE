@@ -24,7 +24,19 @@ The \code{anise} package provides:
 }
 
 \author{
-\strong{Maintainer}: John Doe \email{xxxx@xxx.com} (\href{https://orcid.org/0000-0000-1111-1111}{ORCID})
+\strong{Maintainer}: Clément Violet \email{clement.violet@umontpellier.fr} (\href{https://orcid.org/0000-0001-6217-5891}{ORCID})
+
+Authors:
+\itemize{
+  \item Mathieu Chevalier (\href{https://orcid.org/0000-0002-1170-5343}{ORCID})
+  \item Amelia Curd (\href{https://orcid.org/0000-0003-3260-7192}{ORCID})
+  \item Frédérique Viard (\href{https://orcid.org/0000-0001-5603-9527}{ORCID})
+}
+
+Other contributors:
+\itemize{
+  \item Mathisse Meyneng (\href{https://orcid.org/0009-0000-7442-4613}{ORCID}) (Logo designer) [contributor]
+}
 
 }
 \keyword{internal}
