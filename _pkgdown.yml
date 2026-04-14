@@ -1,4 +1,17 @@
-url: https://clementviolet.github.io/E-MARINADE/
+url: https://clementviolet.github.io/ANIS-E/
 template:
   bootstrap: 5
-
+  light-switch: true
+reference:
+- title: "Shiny App"
+  contents:
+  - shiny_anise
+- title: "Loading the data files"
+  contents:
+  - data_anise
+  - introduction
+  - meow
+  - origin
+  - pathway
+  - taxonomy
+  - taxonomy_identifiers
