@@ -20,7 +20,6 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 License: CC0
 Imports:
-    dm,
     dplyr,
     DT,
     glue,

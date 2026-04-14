@@ -12,7 +12,7 @@ suppressWarnings({
 
 invasion_eu_map <- function(year = 2024){
   
-  nb_inv_ecoregion <- dm_data$inv_tbl %>%
+  nb_inv_ecoregion <- anise::introduction %>%
     dplyr::filter(is.na(year) | year <= year) %>%
     dplyr::filter(!is.na(ECO_CODE_X)) %>%
     dplyr::distinct(taxonID, ECO_CODE_X, .keep_all = TRUE) %>%
@@ -66,8 +66,8 @@ invasion_eu_table <- function(ecoregion) {
   DT::renderDT({
     if (length(ecoregion()) == 0) {
       
-      data <- dm_data$taxo_tbl %>% 
-        dplyr::left_join(dm_data$inv_tbl, by = "taxonID") %>% 
+      data <- anise::taxonomy %>% 
+        dplyr::left_join(anise::introduction, by = "taxonID") %>% 
         dplyr::left_join(
           meow, by ="ECO_CODE_X", 
           relationship = "many-to-many"
@@ -80,8 +80,8 @@ invasion_eu_table <- function(ecoregion) {
       
     } else {
       
-      data <- dm_data$taxo_tbl %>% 
-        dplyr::left_join(dm_data$inv_tbl, by = "taxonID") %>%
+      data <- anise::taxonomy %>% 
+        dplyr::left_join(anise::introduction, by = "taxonID") %>%
         dplyr::left_join(
           taxoIdentifiers, by = "taxonID"
         ) %>%

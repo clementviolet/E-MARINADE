@@ -25,21 +25,21 @@ shiny_anise <- function(){
   data_path <- system.file("app/data/shiny_app_data.rda", package = "anise")
   load(data_path, envir = data_env)
 
-  dm_data <- dm::dm_get_tables(data_env$dm_data) %>%
-    dm::as_dm()
+  # dm_data <- dm::dm_get_tables(data_env$dm_data) %>%
+  #   dm::as_dm()
 
   meow <- data_env$meow
-  meow_eco <- data_env$meow_eco
   meow_prov <- data_env$meow_prov
   meow_rlm <- data_env$meow_rlm
   
+  # pathway_tbl <- data_env$pathway
+  # taxo_tbl <- data_env$taxonomy
+  
   europe_ecoregions <- c(2, 20:27, 29, 30:36, 44)
-
-  rm(data_env)
   
   # Pathway
   
-  pathway_wide <- dm_data$pathway_tbl %>%
+  pathway_wide <- anise::pathway %>%
     dplyr::mutate(values = TRUE) %>%
     tidyr::pivot_wider(
       names_from = pathway,
@@ -49,7 +49,7 @@ shiny_anise <- function(){
   
   # Provide taxonomical identifiers
   
-  taxoIdentifiers <- dm_data$taxo_identifiers %>%
+  taxoIdentifiers <- anise::taxonomy_identifiers %>%
     tidyr::pivot_wider(
       names_from = subject, values_from = identifier
     ) %>%
@@ -57,6 +57,8 @@ shiny_anise <- function(){
     dplyr::group_by(taxonID) %>%
     dplyr::summarise(dplyr::across(dplyr::everything(), ~sum(.x, na.rm = TRUE))) %>%
     dplyr::mutate(dplyr::across(dplyr::everything(), ~dplyr::na_if(.x, 0)))
+  
+  rm(data_env)
   
   # Shiny App per say
 

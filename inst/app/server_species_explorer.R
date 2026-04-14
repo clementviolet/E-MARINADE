@@ -1,4 +1,4 @@
-speciesExplorerServer <- function(id, dm_data, meow) {
+speciesExplorerServer <- function(id, meow) {
   
   moduleServer(id, function(input, output, session) {
     
@@ -52,31 +52,31 @@ speciesExplorerServer <- function(id, dm_data, meow) {
       
       if(taxo_lvl() == "Kingdom"){
         
-        dm_data$taxo_tbl$acceptedNameUsage[dm_data$taxo_tbl$kingdom %in% taxon]
+        anise::taxonomy$acceptedNameUsage[anise::taxonomy$kingdom %in% taxon]
         
       } else if(taxo_lvl() == "Phylum"){
         
-        dm_data$taxo_tbl$acceptedNameUsage[dm_data$taxo_tbl$phylum %in% taxon]
+        anise::taxonomy$acceptedNameUsage[anise::taxonomy$phylum %in% taxon]
         
       } else if(taxo_lvl() == "Class"){
         
-        dm_data$taxo_tbl$acceptedNameUsage[dm_data$taxo_tbl$class %in% taxon]
+        anise::taxonomy$acceptedNameUsage[anise::taxonomy$class %in% taxon]
         
       } else if(taxo_lvl() == "Order"){
         
-        dm_data$taxo_tbl$acceptedNameUsage[dm_data$taxo_tbl$order %in% taxon]
+        anise::taxonomy$acceptedNameUsage[anise::taxonomy$order %in% taxon]
         
       } else if(taxo_lvl() == "Family"){
         
-        dm_data$taxo_tbl$acceptedNameUsage[dm_data$taxo_tbl$family %in% taxon]
+        anise::taxonomy$acceptedNameUsage[anise::taxonomy$family %in% taxon]
         
       } else if(taxo_lvl() == "Genus"){
         
-        dm_data$taxo_tbl$acceptedNameUsage[dm_data$taxo_tbl$genus %in% taxon]
+        anise::taxonomy$acceptedNameUsage[anise::taxonomy$genus %in% taxon]
         
       } else{
         
-        dm_data$taxo_tbl$acceptedNameUsage[dm_data$taxo_tbl$acceptedNameUsage %in% taxon]
+        anise::taxonomy$acceptedNameUsage[anise::taxonomy$acceptedNameUsage %in% taxon]
         
       }
     })
@@ -91,11 +91,11 @@ speciesExplorerServer <- function(id, dm_data, meow) {
         
         if(identical(aphia, numeric(0))) aphia <- Inf
         
-        taxon_id <- dm_data$taxo_identifiers %>%
+        taxon_id <- anise::taxonomy_identifiers %>%
           dplyr::filter(title == "AphiaID", identifier == aphia) %>%
           dplyr::pull(taxonID)
         
-        dm_data$taxo_tbl$taxonID[dm_data$taxo_tbl$taxonID %in% taxon_id]
+        anise::taxonomy$taxonID[anise::taxonomy$taxonID %in% taxon_id]
         
       } else{
         
@@ -111,9 +111,9 @@ speciesExplorerServer <- function(id, dm_data, meow) {
     #     inputMode = input$inputMode,
     #     matched_sp = matched_sp(),
     #     matched_aphia = matched_aphia(),
-    #     invalid_sp_name = sp_input()$species[!sp_input()$species %in% dm_data$taxo_tbl$Species],
+    #     invalid_sp_name = sp_input()$species[!sp_input()$species %in% anise::taxonomy$Species],
     #     aphia_not_found = as.numeric(sp_input()$aphia)[
-    #       !as.numeric(sp_input()$aphia) %in% dm_data$taxo_tbl$AphiaID
+    #       !as.numeric(sp_input()$aphia) %in% anise::taxonomy$AphiaID
     #     ]
     #   )
     # })
@@ -167,37 +167,37 @@ speciesExplorerServer <- function(id, dm_data, meow) {
       if (!user_has_typed()) return(NULL)
       
       
-      invalid <- sp_input()$species[!sp_input()$species %in% dm_data$taxo_tbl$acceptedNameUsage]
+      invalid <- sp_input()$species[!sp_input()$species %in% anise::taxonomy$acceptedNameUsage]
       
       taxon <- sp_input()$species
       
       if(taxo_lvl() == "Kingdom"){
         
-        invalid <- taxon[!taxon %in% dm_data$taxo_tbl$kingdom]
+        invalid <- taxon[!taxon %in% anise::taxonomy$kingdom]
         
       } else if(taxo_lvl() == "Phylum"){
         
-        invalid <- taxon[!taxon %in% dm_data$taxo_tbl$phylum]
+        invalid <- taxon[!taxon %in% anise::taxonomy$phylum]
         
       } else if(taxo_lvl() == "Class"){
         
-        invalid <- taxon[!taxon %in% dm_data$taxo_tbl$class]
+        invalid <- taxon[!taxon %in% anise::taxonomy$class]
         
       } else if(taxo_lvl() == "Order"){
         
-        invalid <- taxon[!taxon %in% dm_data$taxo_tbl$order]
+        invalid <- taxon[!taxon %in% anise::taxonomy$order]
         
       } else if(taxo_lvl() == "Family"){
         
-        invalid <- taxon[!taxon %in% dm_data$taxo_tbl$family]
+        invalid <- taxon[!taxon %in% anise::taxonomy$family]
         
       } else if(taxo_lvl() == "Genus"){
         
-        invalid <- taxon[!taxon %in% dm_data$taxo_tbl$genus]
+        invalid <- taxon[!taxon %in% anise::taxonomy$genus]
         
       } else{
         
-        invalid <- taxon[!taxon %in% dm_data$taxo_tbl$acceptedNameUsage]
+        invalid <- taxon[!taxon %in% anise::taxonomy$acceptedNameUsage]
         
       }
       
@@ -220,7 +220,7 @@ speciesExplorerServer <- function(id, dm_data, meow) {
       
       aphia <- as.numeric(sp_input()$aphia)
       
-      aphia_df <- dm_data$taxo_identifiers %>%
+      aphia_df <- anise::taxonomy_identifiers %>%
         dplyr::filter(title == "AphiaID")
       
       invalid <- aphia[!aphia %in% aphia_df$identifier]
@@ -246,35 +246,35 @@ speciesExplorerServer <- function(id, dm_data, meow) {
         
         if(taxo_lvl() == "Kingdom"){
           
-          dm_data$taxo_tbl %>%
+          anise::taxonomy %>%
             dplyr::filter(kingdom %in% taxon) %>%
             dplyr::pull(taxonID) %>%
             unique()
           
         } else if(taxo_lvl() == "Phylum"){
           
-          dm_data$taxo_tbl %>%
+          anise::taxonomy %>%
             dplyr::filter(phylum %in% taxon) %>%
             dplyr::pull(taxonID) %>%
             unique()
           
         } else if(taxo_lvl() == "Class"){
           
-          dm_data$taxo_tbl %>%
+          anise::taxonomy %>%
             dplyr::filter(class %in% taxon) %>%
             dplyr::pull(taxonID) %>%
             unique()
           
         } else if(taxo_lvl() == "Order"){
           
-          dm_data$taxo_tbl %>%
+          anise::taxonomy %>%
             dplyr::filter(order %in% taxon) %>%
             dplyr::pull(taxonID) %>%
             unique()
           
         } else if(taxo_lvl() == "Family"){
           
-          dm_data$taxo_tbl %>%
+          anise::taxonomy %>%
             dplyr::filter(family %in% taxon) %>%
             dplyr::pull(taxonID) %>%
             unique()
@@ -282,7 +282,7 @@ speciesExplorerServer <- function(id, dm_data, meow) {
         } else if(taxo_lvl() == "Genus"){
           
           
-          dm_data$taxo_tbl %>%
+          anise::taxonomy %>%
             dplyr::filter(genus %in% taxon) %>%
             dplyr::pull(taxonID) %>%
             unique()
@@ -293,7 +293,7 @@ speciesExplorerServer <- function(id, dm_data, meow) {
             dplyr::filter(`WoRMS AphiaID` %in% aphia) %>%
             dplyr::pull(taxonID)
           
-          dm_data$taxo_tbl %>%
+          anise::taxonomy %>%
             dplyr::filter(acceptedNameUsage %in% taxon | taxonID %in% taxon_ID) %>%
             dplyr::pull(taxonID) %>%
             unique()
@@ -301,16 +301,16 @@ speciesExplorerServer <- function(id, dm_data, meow) {
         }
       } else {
         req(input$speciesTaxoTable_rows_selected)
-        unique(dm_data$taxo_tbl[input$speciesTaxoTable_rows_selected, "taxonID", drop = TRUE])
+        unique(anise::taxonomy[input$speciesTaxoTable_rows_selected, "taxonID", drop = TRUE])
       }
     })
     
     output$speciesTaxoTable <- DT::renderDT({
       DT::datatable(
-        dm_data$taxo_tbl %>% 
+        anise::taxonomy %>% 
           dplyr::left_join(
             dplyr::distinct(
-              dplyr::select(dm_data$origin_tbl, taxonID, nativeEurope),
+              dplyr::select(anise::origin, taxonID, nativeEurope),
               taxonID, .keep_all = TRUE
             ), 
             by = "taxonID") %>%
@@ -342,7 +342,7 @@ speciesExplorerServer <- function(id, dm_data, meow) {
     
       if (is.null(ids)) ids <- character(0)
       
-      choices <- dm_data$taxo_tbl %>%
+      choices <- anise::taxonomy %>%
         dplyr::filter(taxonID %in% ids) %>%
         dplyr::distinct(taxonID, acceptedNameUsage) %>%
         dplyr::arrange(acceptedNameUsage)
@@ -378,11 +378,11 @@ speciesExplorerServer <- function(id, dm_data, meow) {
       selected <- as.numeric(selected)  # make sure to match SpeciesID column type
       
       # Filter origin and invasion data
-      origin_data <- dm_data$origin_tbl %>%
+      origin_data <- anise::origin %>%
         dplyr::filter(taxonID %in% selected, !is.na(ECO_CODE_X)) %>%
         dplyr::add_count(ECO_CODE_X)
       
-      inv_data <- dm_data$inv_tbl %>%
+      inv_data <- anise::introduction %>%
         dplyr::left_join(pathway_wide, by = "occurenceID") %>%
         dplyr::filter(establishmentMeans == "Non-indigenous") %>%
         dplyr::filter(taxonID %in% selected) %>%
@@ -390,7 +390,7 @@ speciesExplorerServer <- function(id, dm_data, meow) {
         dplyr::distinct(taxonID, ECO_CODE_X, .keep_all = TRUE) %>%
         dplyr::add_count(ECO_CODE_X)
       
-      crypt_data <- dm_data$inv_tbl %>%
+      crypt_data <- anise::introduction %>%
         dplyr::left_join(pathway_wide, by = "occurenceID") %>%
         dplyr::filter(establishmentMeans == "Cryptogenic") %>%
         dplyr::filter(taxonID %in% selected) %>%
@@ -614,16 +614,16 @@ speciesExplorerServer <- function(id, dm_data, meow) {
     output$invDataTable <- DT::renderDT({
       req(input$SpeciesListPicker)
       
-      taxon_id <- dm_data$taxo_tbl %>%
+      taxon_id <- anise::taxonomy %>%
         dplyr::filter(taxonID %in% as.numeric(input$SpeciesListPicker)) %>%
         dplyr::pull(taxonID)
       
       
-      inv_data <- dm_data$inv_tbl %>%
+      inv_data <- anise::introduction %>%
         dplyr::left_join(pathway_wide, by = "occurenceID") %>%
         dplyr::filter(taxonID %in% taxon_id) %>%
         dplyr::left_join(meow, by = "ECO_CODE_X") %>%
-        dplyr::left_join(dm_data$taxo_tbl, by = "taxonID") %>%
+        dplyr::left_join(anise::taxonomy, by = "taxonID") %>%
         dplyr::left_join(
           taxoIdentifiers, by = "taxonID"
         ) %>%
@@ -655,15 +655,15 @@ speciesExplorerServer <- function(id, dm_data, meow) {
     output$originDataTable <- DT::renderDT({
       req(input$SpeciesListPicker)
       
-      taxon_id <- dm_data$taxo_tbl %>%
+      taxon_id <- anise::taxonomy %>%
         dplyr::filter(taxonID %in% as.numeric(input$SpeciesListPicker)) %>%
         dplyr::pull(taxonID)
       
       
-      origin_data <- dm_data$origin_tbl %>%
+      origin_data <- anise::origin %>%
         dplyr::filter(taxonID %in% taxon_id) %>%
         dplyr::left_join(meow, by = "ECO_CODE_X") %>%
-        dplyr::left_join(dm_data$taxo_tbl, by = "taxonID") %>%
+        dplyr::left_join(anise::taxonomy, by = "taxonID") %>%
         dplyr::left_join(
           taxoIdentifiers, by = "taxonID"
         ) %>%

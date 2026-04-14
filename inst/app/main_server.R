@@ -105,7 +105,7 @@ server <- function(input, output, session){
   #############################
   #      Species Explorer     #
   #############################
-  speciesExplorerServer("species_explorer", dm_data, meow)
+  speciesExplorerServer("species_explorer", meow)
   
   
   output$IntroTableDef <- shiny::renderTable({

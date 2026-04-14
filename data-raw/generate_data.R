@@ -1,5 +1,5 @@
 library(tidyverse)
-library(dm)
+# library(dm)
 library(sf)
 
 sf::sf_use_s2(FALSE)
@@ -11,8 +11,6 @@ taxonomy <- read_csv("../ENI_Listing/EML/data_objects/taxonomy.csv")
 taxonomy_identifiers <- read_csv("../ENI_Listing/EML/data_objects/taxonomy_identifiers.csv")
 meow_tbl <- read_csv("../ENI_Listing/EML/data_objects/meow.csv")
 origin <- read_csv("../ENI_Listing/EML/data_objects/origin.csv")
-
-dm_data <- readRDS("../ENI_Listing/00-Data/02-Clean/NIS_Europe_RDBM.rds")
 
 # Creating sf df
 
@@ -49,7 +47,12 @@ meow_rlm <- meow %>%
 
 # Saving the datasets
 
-save(dm_data, meow, meow_prov, meow_rlm, file = "inst/app/data/shiny_app_data.rda")
+save(
+  introduction, pathway, taxonomy,
+  taxonomy_identifiers, origin, 
+  meow, meow_prov, meow_rlm, 
+  file = "inst/app/data/shiny_app_data.rda"
+)
 
 # Exporting the datasets
 
