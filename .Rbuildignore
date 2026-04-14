@@ -1,6 +1,8 @@
 ^LICENSE\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.git$
+^\.gitignore$
 ^data-raw$
 ^Paper$
 ^doc$
@@ -11,3 +13,5 @@
 ^pkgdown$
 ^README\.Rmd$
 ^\.pptx$
+^pkgdown/$
+^Divers/$
