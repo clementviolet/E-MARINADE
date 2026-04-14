@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 
 <!-- # anise <a href="https://url"><img src="man/figures/logo.png" align="right" height="138" alt="anise website" /></a> -->
 
-# anise <img src="inst/www/Logo_ANIS-E.svg" align="right" height="138"/>
+# anise <a href="https://clementviolet.github.io/ANIS-E/"><img src="man/figures/logo.png" align="right" height="139" alt="anise website" /></a>
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -28,7 +28,7 @@ You can install the development version of anise from [GitHub](https://github.co
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("xx/xx")
+devtools::install_github("clementviolet/ANIS-E")
 ```
 
 ## Example

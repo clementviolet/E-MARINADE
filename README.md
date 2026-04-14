@@ -1,12 +1,10 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- # anise <a href="https://url"><img src="man/figures/logo.png" align="right" height="138" alt="anise website" /></a> -->
 
-# anise <img src="inst/www/Logo_ANIS-E.svg" align="right" height="138"/>
+# anise <a href="https://clementviolet.github.io/ANIS-E/"><img src="man/figures/logo.png" align="right" height="139" alt="anise website" /></a>
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
 The goal of `anise` is to provide an easy access to the data of the
@@ -20,7 +18,7 @@ You can install the development version of anise from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("xx/xx")
+devtools::install_github("clementviolet/ANIS-E")
 ```
 
 ## Example
@@ -46,10 +44,12 @@ data_anise()
 or individual dataset using:
 
 ``` r
-taxo_tbl
-inv_tbl
-origin_tbl
+introduction
 meow
+origin
+pathway
+taxonomy
+taxonomy_identifiers
 ```
 
 See the package documentation for the description of the different
