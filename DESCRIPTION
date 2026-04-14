@@ -2,9 +2,17 @@ Package: anise
 Title: ANIS-E: Atlas of marine Non-Indigenous Species in Europe
 Version: 0.3.0
 Authors@R: c(
-    person("John", "Doe", , "xxxx@xxx.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0000-1111-1111"))
-           )
+    person("Clément", "Violet", , "clement.violet@umontpellier.fr", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-6217-5891")),
+    person("Mathieu", "Chevalier", role = "aut",
+           comment = c(ORCID = "0000-0002-1170-5343")),
+    person("Amelia", "Curd", role = "aut",
+           comment = c(ORCID = "0000-0003-3260-7192")),
+    person("Frédérique", "Viard", role = "aut",
+           comment = c(ORCID = "0000-0001-5603-9527")),
+    person("Mathisse", "Meyneng", role = "ctb",
+           comment = c(ORCID = "0009-0000-7442-4613", Other = "Logo designer"))
+  )
 Description: A Shiny application to explore marine non-indigenous species
     in European waters.
 Encoding: UTF-8
