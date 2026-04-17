@@ -19,12 +19,17 @@
 
 ## Citation
 
+Source:
+[`DESCRIPTION`](https://github.com/clementviolet/ANIS-E/blob/master/DESCRIPTION)
+
 Violet C, Chevalier M, Curd A, Viard F (2026). *anise: ANIS-E: Atlas of
-marine Non-Indigenous Species in Europe*. R package version 0.3.0.
+marine Non-Indigenous Species in Europe*. R package version 1.0.0,
+<https://clementviolet.github.io/ANIS-E/>.
 
     @Manual{,
       title = {anise: ANIS-E: Atlas of marine Non-Indigenous Species in Europe},
       author = {Clément Violet and Mathieu Chevalier and Amelia Curd and Frédérique Viard},
       year = {2026},
-      note = {R package version 0.3.0},
+      note = {R package version 1.0.0},
+      url = {https://clementviolet.github.io/ANIS-E/},
     }

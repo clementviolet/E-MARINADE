@@ -1,4 +1,4 @@
-# ANIS-E
+# ANIS-E - Shiny App
 
 ## Introduction,
 

@@ -29,7 +29,7 @@ A `tibble` data frame with 46,014 rows and 5 columns:
 - ECO_CODE_X:
 
   Code of the Ecoregion in a short format. See
-  [meow](https://clementviolet.github.io/E-MARINADE/reference/meow.md)
+  [meow](https://clementviolet.github.io/ANIS-E/reference/meow.md)
   documentation.
 
 - nativeEurope:

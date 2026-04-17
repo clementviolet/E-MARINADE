@@ -18,7 +18,30 @@ The `anise` package provides:
 
 - `meow`: Marine ecoregions polygons
 
+## See also
+
+Useful links:
+
+- <https://clementviolet.github.io/ANIS-E/>
+
+- <https://github.com/clementviolet/ANIS-E>
+
+- Report bugs at <https://github.com/clementviolet/ANIS-E/issues>
+
 ## Author
 
-**Maintainer**: John Doe <xxxx@xxx.com>
-([ORCID](https://orcid.org/0000-0000-1111-1111))
+**Maintainer**: Clément Violet <clement.violet@umontpellier.fr>
+([ORCID](https://orcid.org/0000-0001-6217-5891))
+
+Authors:
+
+- Mathieu Chevalier ([ORCID](https://orcid.org/0000-0002-1170-5343))
+
+- Amelia Curd ([ORCID](https://orcid.org/0000-0003-3260-7192))
+
+- Frédérique Viard ([ORCID](https://orcid.org/0000-0001-5603-9527))
+
+Other contributors:
+
+- Mathisse Meyneng ([ORCID](https://orcid.org/0009-0000-7442-4613))
+  (Logo designer) \[contributor\]

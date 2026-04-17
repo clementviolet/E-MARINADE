@@ -2,4 +2,5 @@
 
 ### All vignettes
 
-- [ANIS-E](https://clementviolet.github.io/E-MARINADE/articles/ShinyANIS-E.md):
+- [ANIS-E - Shiny
+  App](https://clementviolet.github.io/ANIS-E/articles/ShinyANIS-E.md):

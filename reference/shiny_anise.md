@@ -18,12 +18,12 @@ its side effect of launching the app.
 ## See also
 
 Dataset documentation:
-[taxonomy](https://clementviolet.github.io/E-MARINADE/reference/taxonomy.md),
-[introduction](https://clementviolet.github.io/E-MARINADE/reference/introduction.md),
-[origin](https://clementviolet.github.io/E-MARINADE/reference/origin.md),
-[taxonomy](https://clementviolet.github.io/E-MARINADE/reference/taxonomy.md),
-[taxonomy_identifiers](https://clementviolet.github.io/E-MARINADE/reference/taxonomy_identifiers.md),
-[meow](https://clementviolet.github.io/E-MARINADE/reference/meow.md).
+[taxonomy](https://clementviolet.github.io/ANIS-E/reference/taxonomy.md),
+[introduction](https://clementviolet.github.io/ANIS-E/reference/introduction.md),
+[origin](https://clementviolet.github.io/ANIS-E/reference/origin.md),
+[taxonomy](https://clementviolet.github.io/ANIS-E/reference/taxonomy.md),
+[taxonomy_identifiers](https://clementviolet.github.io/ANIS-E/reference/taxonomy_identifiers.md),
+[meow](https://clementviolet.github.io/ANIS-E/reference/meow.md).
 
 ## Examples
 
