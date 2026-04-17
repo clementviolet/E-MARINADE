@@ -1,8 +1,8 @@
 ---
-title: ANIS-E
+title: ANIS-E - Shiny App
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ANIS-E}
+  %\VignetteIndexEntry{ANIS-E - Shiny App}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
