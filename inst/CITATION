@@ -1,0 +1,31 @@
+citHeader("To cite 'anise' in publications, please use:")
+
+bibentry(
+  bibtype  = "Manual",
+  title    = "anise R package: Atlas of marine Non-Indigenous Species in Europe",
+  author   = c(
+    person("Clément", "Violet"),
+    person("Mathieu", "Chevalier"),
+    person("Amelia", "Curd"),
+    person("Frédérique", "Viard")
+  ),
+  year     = "2026",
+  note     = "R package version 1.0.0"
+)
+
+bibentry(
+  bibtype  = "Article",
+  title    = "ANIS-E: An Atlas of Marine Non-Indigenous Species in Europe",
+  author   = c(
+    person("Clément", "Violet"),
+    person("Mathieu", "Chevalier"),
+    person("Amelia", "Curd"),
+    person("Frédérique", "Viard")
+  ),
+  journal  = "Global Ecology and Biogeography",
+  year     = "2026",
+  volume   = "35",
+  number   = "4",
+  pages    = "e70242",
+  doi      = "https://onlinelibrary.wiley.com/doi/pdf/10.1111/geb.70242"
+)
