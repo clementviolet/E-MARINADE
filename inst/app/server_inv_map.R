@@ -23,7 +23,7 @@ invasion_eu_map <- function(year = 2024){
     tidyr::replace_na(list(n = 0)) %>%
     dplyr::filter(n > 0)
   
-  pal <- leaflet::colorBin("viridis", NULL, bins = seq(0, 700, 5))
+  pal <- leaflet::colorBin("viridis", NULL, bins = seq(0, 1200, 10))
   
   m <- leaflet::leaflet(data_plot) %>%
     leaflet::addTiles(options = leaflet::tileOptions(
@@ -46,8 +46,8 @@ invasion_eu_map <- function(year = 2024){
       layerId = ~ECO_CODE_X
     ) %>%
     leaflet::addLegend(
-      colors = pal(c(0, 100, 200, 300, 400, 500, 600)),
-      labels = as.character(c(0, 100, 200, 300, 400, 500, 600)),
+      colors = pal(c(0, 100, 200, 300, 400, 500, 600, 800, 1000)),
+      labels = as.character(c(0, 100, 200, 300, 400, 500, 600, 800, 1000)),
       title = "NIS Count",
       labFormat = leaflet::labelFormat(transform = function(x) x),
       opacity = 1, na.label = "0"
