@@ -1,16 +1,15 @@
 library(tidyverse)
-# library(dm)
 library(sf)
 
 sf::sf_use_s2(FALSE)
 
 # Loading up to date tables
-introduction <- read_csv("../ENI_Listing/EML/data_objects/introduction.csv")
-pathway <- read_csv("../ENI_Listing/EML/data_objects/pathway.csv")
-taxonomy <- read_csv("../ENI_Listing/EML/data_objects/taxonomy.csv")
-taxonomy_identifiers <- read_csv("../ENI_Listing/EML/data_objects/taxonomy_identifiers.csv")
-meow_tbl <- read_csv("../ENI_Listing/EML/data_objects/meow.csv")
-origin <- read_csv("../ENI_Listing/EML/data_objects/origin.csv")
+introduction <- read_csv("../ANIS-E_update/00-data/02-releases/v1.0.1/introduction.csv")
+pathway <- read_csv("../ANIS-E_update/00-data/02-releases/v1.0.1/pathway.csv")
+taxonomy <- read_csv("../ANIS-E_update/00-data/02-releases/v1.0.1/taxonomy.csv")
+taxonomy_identifiers <- read_csv("../ANIS-E_update/00-data/02-releases/v1.0.1/taxonomy_identifiers.csv")
+meow_tbl <- read_csv("../ANIS-E_update/00-data/02-releases/v1.0.1/meow.csv")
+origin <- read_csv("../ANIS-E_update/00-data/02-releases/v1.0.1/origin.csv")
 
 # Creating sf df
 
@@ -49,8 +48,8 @@ meow_rlm <- meow %>%
 
 save(
   introduction, pathway, taxonomy,
-  taxonomy_identifiers, origin, 
-  meow, meow_prov, meow_rlm, 
+  taxonomy_identifiers, origin,
+  meow, meow_prov, meow_rlm,
   file = "inst/app/data/shiny_app_data.rda"
 )
 
@@ -58,6 +57,6 @@ save(
 
 usethis::use_data(
   introduction, pathway,
-  taxonomy, taxonomy_identifiers, 
+  taxonomy, taxonomy_identifiers,
   origin, meow, overwrite = TRUE
   )
