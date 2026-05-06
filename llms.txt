@@ -14,6 +14,12 @@ national listing or native range, please email me:
 <clement.violet@umontpellier.fr>. If you’ve found a bug, or wanting to
 improve the Shiny app, please feel free to open and issue/pull request.
 
+## Dataset version
+
+The current ANIS-E dataset version, release date, and update type are
+documented in
+[`VERSION.md`](https://clementviolet.github.io/ANIS-E/VERSION.md).
+
 ## Installation
 
 You can install the development version of anise from
