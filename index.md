@@ -20,6 +20,7 @@ You can install the development version of anise from
 [GitHub](https://github.com/clementviolet/ANIS-E) with:
 
 ``` r
+
 # install.packages("devtools")
 devtools::install_github("clementviolet/ANIS-E")
 ```
@@ -31,6 +32,7 @@ devtools::install_github("clementviolet/ANIS-E")
 After loading the R package, you can launch the shiny app with:
 
 ``` r
+
 library(anise)
 
 shiny_anise()
@@ -41,12 +43,14 @@ shiny_anise()
 You can also load the different datasets through:
 
 ``` r
+
 data_anise()
 ```
 
 or individual dataset using:
 
 ``` r
+
 introduction
 meow
 origin

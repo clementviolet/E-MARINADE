@@ -14,6 +14,7 @@ species and finaly export results
 To launch the app, simply write in the terminal:
 
 ``` r
+
 library(anise)
 
 shiny_anise()
@@ -87,9 +88,9 @@ to be explored at once.
 
 In `Text mode`, the input is given manually. You switch the input to
 text, choose a taxonomic level (the default is *Species*, and AphiaIDs
-are disabled for broader levels such as Genus or Family[¹](#fn1)), and
-paste one entry per line, either a species name or an AphiaID (only
-available if the taxonomic level choosen is “Species”). For example:
+are disabled for broader levels such as Genus or Family[^1]), and paste
+one entry per line, either a species name or an AphiaID (only available
+if the taxonomic level choosen is “Species”). For example:
 
 > Caulerpa taxifolia
 >
@@ -185,8 +186,6 @@ tables and export the results.
   table and outputs. In the European Introduction Map, use the
   `Reset Table` button to clear all selected regions.
 
-------------------------------------------------------------------------
-
-1.  Searching by AphiaID is currently supported only at the species
+[^1]: Searching by AphiaID is currently supported only at the species
     level. Future versions will extend this feature to all taxonomic
     levels.

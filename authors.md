@@ -20,7 +20,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/clementviolet/ANIS-E/blob/master/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/clementviolet/ANIS-E/blob/v1.0.0/DESCRIPTION)
 
 Violet C, Chevalier M, Curd A, Viard F (2026). *anise: ANIS-E: Atlas of
 marine Non-Indigenous Species in Europe*. R package version 1.0.0,
