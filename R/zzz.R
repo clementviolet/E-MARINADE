@@ -34,7 +34,7 @@
       paste0(
         "A newer version of ", pkgname, " is available on GitHub: v", remote_ver, "\n",
         "Update with:\n",
-        "  remotes::install_github('", owner, "/", repo, "@", ref, "')"
+        "  remotes::install_github('", owner, "/", repo, "@v", remote_ver, "')"
       )
     )
   }
