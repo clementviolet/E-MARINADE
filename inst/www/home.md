@@ -26,4 +26,4 @@ The app combines spatial data, ecological metadata, and interactive maps to supp
 
 **Note:** *ANIS-E* is a harmonised compilation and does not aim to independently verify or correct introduction reports from the original sources; with the exception of native range assignments and taxonomic harmonisation, all information is reproduced as reported in the source of the introduction reports.
 
-**Note:** Taxonomical information updated on the 03/25/2026.
+**Note:** Taxonomical information updated on the 05/05/2026.
