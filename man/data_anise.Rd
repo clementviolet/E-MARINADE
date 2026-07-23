@@ -10,7 +10,7 @@ data_anise(envir = .GlobalEnv)
 \item{envir}{The environment where the datasets will be loaded. Defaults to the global environment.}
 }
 \value{
-Load the \code{taxonomy}, \code{taxonomy_identifiers},\code{introudction}, \code{origin} and \code{meow} datasets.
+Load the \code{taxonomy}, \code{taxonomy_identifiers},\code{introduction}, \code{origin} and \code{meow} datasets.
 }
 \description{
 Loading all anise datasets
