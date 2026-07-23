@@ -17,7 +17,6 @@ Description: A Shiny application to explore marine non-indigenous species
     in European waters.
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
 License: CC0
 Imports:
     dplyr,
@@ -46,3 +45,4 @@ VignetteBuilder:
     rmarkdown
 URL: https://clementviolet.github.io/ANIS-E/, https://github.com/clementviolet/ANIS-E
 BugReports: https://github.com/clementviolet/ANIS-E/issues
+Config/roxygen2/version: 8.0.0
