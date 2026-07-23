@@ -4,12 +4,12 @@ library(sf)
 sf::sf_use_s2(FALSE)
 
 # Loading up to date tables
-introduction <- read_csv("../ANIS-E_update/00-data/02-releases/v1.0.1/introduction.csv")
-pathway <- read_csv("../ANIS-E_update/00-data/02-releases/v1.0.1/pathway.csv")
-taxonomy <- read_csv("../ANIS-E_update/00-data/02-releases/v1.0.1/taxonomy.csv")
-taxonomy_identifiers <- read_csv("../ANIS-E_update/00-data/02-releases/v1.0.1/taxonomy_identifiers.csv")
-meow_tbl <- read_csv("../ANIS-E_update/00-data/02-releases/v1.0.1/meow.csv")
-origin <- read_csv("../ANIS-E_update/00-data/02-releases/v1.0.1/origin.csv")
+introduction <- read_csv("../ANIS-E_update/00-data/02-releases/v1.1.0/introduction.csv")
+pathway <- read_csv("../ANIS-E_update/00-data/02-releases/v1.1.0/pathway.csv")
+taxonomy <- read_csv("../ANIS-E_update/00-data/02-releases/v1.1.0/taxonomy.csv")
+taxonomy_identifiers <- read_csv("../ANIS-E_update/00-data/02-releases/v1.1.0/taxonomy_identifiers.csv")
+meow_tbl <- read_csv("../ANIS-E_update/00-data/02-releases/v1.1.0/meow.csv")
+origin <- read_csv("../ANIS-E_update/00-data/02-releases/v1.1.0/origin.csv")
 
 # Creating sf df
 

@@ -1,6 +1,6 @@
 Package: anise
 Title: ANIS-E: Atlas of marine Non-Indigenous Species in Europe
-Version: 1.0.1
+Version: 1.1.0
 Authors@R: c(
     person("Clément", "Violet", , "clement.violet@umontpellier.fr", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-6217-5891")),
