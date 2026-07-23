@@ -1,12 +1,12 @@
 # ANIS-E version
 
-Current version: **v1.0.1**
+Current version: **v1.1.0**
 
 Release date: **2026-05-05**
 
-Previous version: **v1.0.0**
+Previous version: **v1.0.1**
 
-Version type: **PATCH**
+Version type: **MINOR**
 
 ## Versioning rule
 
@@ -19,6 +19,15 @@ ANIS-E follows semantic dataset versioning:
   without changing the schema
 
 ## Current release summary
+
+## V 1.1.0
+
+This release incorporates the updated NIS list for Cyprus, based on
+Michail et al. (2026): <https://doi.org/10.1007/s10530-026-03814-6>.
+Taxonomic information from the World Register of Marine Species (WoRMS)
+were updated on July 22, 2026.
+
+## V 1.0.1
 
 This release provides a corrected version of the dataset. It fixes a
 data-processing issue that caused some records to be overwritten and

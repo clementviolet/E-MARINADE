@@ -17,7 +17,7 @@ data_anise(envir = .GlobalEnv)
 
 ## Value
 
-Load the `taxonomy`, `taxonomy_identifiers`,`introudction`, `origin` and
+Load the `taxonomy`, `taxonomy_identifiers`,`introduction`, `origin` and
 `meow` datasets.
 
 ## See also

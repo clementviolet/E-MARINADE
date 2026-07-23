@@ -35,6 +35,9 @@ Useful links:
 
 Authors:
 
+- Clément Violet <clement.violet@umontpellier.fr>
+  ([ORCID](https://orcid.org/0000-0001-6217-5891))
+
 - Mathieu Chevalier ([ORCID](https://orcid.org/0000-0002-1170-5343))
 
 - Amelia Curd ([ORCID](https://orcid.org/0000-0003-3260-7192))
@@ -44,4 +47,4 @@ Authors:
 Other contributors:
 
 - Mathisse Meyneng ([ORCID](https://orcid.org/0009-0000-7442-4613))
-  (Logo designer) \[contributor\]
+  (Other: Logo designer) \[contributor\]
